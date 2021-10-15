@@ -30,18 +30,15 @@ const Navbar = (props) => {
             <div>
                 <div id="content-container" className="bubble bubble-bottom-left" contenteditable>
                     {email && (<div>Hi, <b>{username} </b></div>)}
-                    <div>
-                        <NavLink to={"/game"}>Game</NavLink>
-                    </div> 
-                    <div>
-                        <NavLink to={"/todo"}>Todo</NavLink>
-                    </div>
-                    <div>
-                        <NavLink to={"/blog"}>Blog</NavLink>
-                    </div>
-                    <div>
-                        <NavLink to={"/translator"}>Translator</NavLink>
-                    </div>
+                        <span style={{display:"flex"}}>
+                            <NavLink to={"/game"}><div className="tohover" style={{backgroundColor:"pink", width:"200px", height:"200px"}}><div style={{padding:"80px 0"}}>Game</div></div></NavLink>
+                            <NavLink to={"/todo"}><div className="tohover" style={{backgroundColor:"lightblue", width:"200px", height:"200px", marginLeft:"20px"}}><div style={{padding:"80px 0"}}>Todo</div></div></NavLink>
+                        </span>
+                        <br />
+                        <span style={{display:"flex"}}>
+                            <NavLink to={"/blog"}><div className="tohover" style={{backgroundColor:"lightblue", width:"200px", height:"200px"}}><div style={{padding:"80px 0"}}>Blog</div></div></NavLink>
+                            <NavLink to={"/translator"}><div className="tohover" style={{backgroundColor:"pink", width:"200px", height:"200px", marginLeft:"20px"}}><div style={{padding:"80px 0"}}>Translator</div></div></NavLink>
+                        </span>
                     
                 </div>
             </div>

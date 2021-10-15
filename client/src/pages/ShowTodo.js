@@ -53,7 +53,7 @@ const ShowTodo = () => {
                     <div>    
                         <p>Priority: {data.priority}</p>
                     </div>
-                    <Link to={`/blog/edit/${data._id}`} className="" id={data._id}>Edit</Link>
+                    <Link to={`/todo/edit/${data._id}`} className="" id={data._id}>Edit</Link>
                     <div><a className="" onClick={handleDelete} id={data._id}>Remove</a></div>
                 </div>
             </div>

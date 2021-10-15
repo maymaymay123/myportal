@@ -162,7 +162,7 @@ app.get("/translator/:email", async (req, res) => {
 })
 
 //score
-app.get("/score/:email", async (req, res) => {
+app.get("/highestscore/:email", async (req, res) => {
     try {
         const data = await ScoreModel.find({email: req.params.email}); 
         res.send(data);
@@ -222,7 +222,7 @@ app.get("/blogseed", async (req, res) => {
 
 ////////////////////////////////////////////////////////////////////////////////////////
 
-// todo
+// todo maybe delete
 app.get('/todo/show/:id', async (req, res) => {
     console.log('getting one')
     try {
@@ -234,10 +234,11 @@ app.get('/todo/show/:id', async (req, res) => {
     }
 })
 
-// todo
+// todo 
 app.post("/todo/add", async (req, res) => {
+    const data = await TodoModel.create(req.body);
     try {
-        const data = await TodoModel.create(req.body); 
+        await data.save()
         res.send({status: 'ok', msg: 'added'});
     } catch (error) {
         console.log({status: 'bad', msg: error.message});
@@ -250,7 +251,7 @@ app.put("/todo/edit/:id", async (req, res) => {
         await TodoModel.updateOne({_id: req.params.id}, req.body); 
         const data = await TodoModel.findOne({_id: req.params.id}); 
         res.send(data);
-        console.log({status: 'ok', msg: 'editted'});
+        console.log({status: 'ok', msg: 'edited'});
     } catch (error) {
         console.log({status: 'bad', msg: error.message});
     }
@@ -273,7 +274,7 @@ app.delete("/todo/delete/:id", async (req, res) => {
 app.get('/blog/show/:id', async (req, res) => {
     console.log('getting one')
     try {
-        const data = await TodoModel.findOne({_id: req.params.id});
+        const data = await BlogModel.findOne({_id: req.params.id});
         res.send(data);
         console.log({status: 'ok', msg: 'get one'});
     } catch (error) {
@@ -297,7 +298,7 @@ app.put("/blog/edit/:id", async (req, res) => {
         await BlogModel.updateOne({_id: req.params.id}, req.body); 
         const data = await BlogModel.findOne({_id: req.params.id}); 
         res.send(data);
-        console.log({status: 'ok', msg: 'editted'});
+        console.log({status: 'ok', msg: 'edited'});
     } catch (error) {
         console.log({status: 'bad', msg: error.message});
     }
@@ -314,6 +315,20 @@ app.delete("/blog/delete/:id", async (req, res) => {
         console.log({status: 'bad', msg: error.message});
     }
 })
+
+
+// score
+app.put("/highestscore/:email", async (req, res) => {
+    try {
+        await ScoreModel.updateOne({email: req.params.email}, req.body); 
+        const data = await ScoreModel.findOne({_id: req.params.id}); 
+        res.send(data);
+        console.log({status: 'oksssss', msg: 'edited'});
+    } catch (error) {
+        console.log({status: 'bad server score', msg: error.message});
+    }
+})
+
 
 // translator
 app.post("/translator/translate", async (req, res) => {
@@ -374,17 +389,6 @@ app.post('/speechtranslator',(req,res) => {
 // });
 
 // })
-
-//score
-app.get('/score', async (req,res) => {
-    try {
-        const data = await ScoreModel.findOne({_id: req.params.id});
-        res.send(data);
-        console.log({status: 'ok', msg: 'get one'});
-    } catch (error) {
-        console.log({status: 'bad', msg: error.message});
-    }
-  })
 
 
 const PORT = process.env.PORT || 5000;

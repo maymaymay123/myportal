@@ -2,6 +2,7 @@ import React, {useState, useEffect} from "react";
 import {Link} from 'react-router-dom';
 import axios from 'axios';
 import Logout from '../components/Logout'
+import styles from '../styles.css'
 
 const Blog = (props) => {
 
@@ -20,8 +21,12 @@ const Blog = (props) => {
         axios.get((uri + `blog/${props.email}`))
         .then(response =>{
             console.log('received data from get one');
+            console.log('check date',response.data[3])
+            //response.data.date = response.data.date.toISOString().split("T")[0]
+            response.data.reverse()
             setData(response.data);
             console.log('data',data);
+            
         })
         .catch((error)=> {
             console.log({status: 'bad', msg: error.message})
@@ -41,24 +46,27 @@ const Blog = (props) => {
     }
 
     return (
-        <div>
-            <Link to="../dashboard">Dashboard</Link>
-            {props.email && (<div>Hi, <b>{props.username} </b></div>)}
-            <Logout />
-            <hr />
-            <div className="center">
+        <div>   
+            <div className="" style={{textAlign:"center", backgroundColor: "white", width:"1600px"}}>
+                <Link to="../blog">Blog Page</Link>
                 <br/>
-                <Link className="" to="/blog/add">Add Article</Link>
+                <Link className="" to="/blog/add">Add Post</Link>
+
                     {data.map((element, index) => {
+                        let currentDate = new Date(element.date);
+                        const isoDate = currentDate.toISOString().split("T")[0];
                         return (
-                            <div key={element._id}>
-                                <div><Link to={`blog/show/${element._id}`}>{element.title}</Link></div>
-                                <div>{element.date}</div>
-                                <div>{element.img}</div>
-                                <div>{element.post}</div>
+                            <div key={element._id} >
+                                <h1 className="titledeco" style={{textDecoration:"none", color:"black"}}><Link to={`blog/show/${element._id}`}>{element.title}</Link></h1>
+                                <div>{isoDate}</div>
+                                <div className="" >
+                                    {element.img ? <img src={element.img} max-width="600px" height="400px" className=""/> : <img style={{visibility:"hidden"}}/>}
+                                </div>
+                                <p style={{fontSize:"25px"}}>{element.post}</p>
                                 <div><Link to={`blog/edit/${element._id}`}><i className="" id={element._id}>Edit</i></Link></div>
                                 <div><i className="" href="/blog" id={element._id} onClick={handleDelete}>Delete</i></div>
                                 <br/>
+                                <hr />
                             </div>
                         )
                     })}

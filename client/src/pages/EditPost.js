@@ -4,14 +4,14 @@ import axios from "axios";
 
 
 const EditPost = (props) => {
-
+    const currentDate = new Date();
+    const isoDate = currentDate.toISOString().split("T")[0];
     const [title, setTitle] = useState('')
     const [post, setPost] = useState('')
     const [img, setImg] = useState('')
     const [prompt, setPrompt] = useState('');
     const [date, setDate] = useState('')
-    const email = props.email;
-    
+ 
     const {id} = useParams();
 
     const [data, setData] = useState([]);
@@ -53,6 +53,9 @@ const EditPost = (props) => {
             setPost(response.data.post);
             setImg(response.data.img);
             console.log("THIS",data);
+            let currentDate = new Date(response.data.date);
+            let isoDate = currentDate.toISOString().split("T")[0];
+            setDate(isoDate)
         })
         .catch((error)=> {
             console.log({status: 'bad', msg: error.message})
@@ -89,21 +92,25 @@ const EditPost = (props) => {
     console.log();
 
     return (
-        <div className="">
+        <div className="" style={{textAlign:"center", backgroundColor: "white", width:"1570px", height:"1000px"}}>
+            <Link to="/blog">Blog Page</Link>
             <form>
                 <div className="">  
-                    <label for="changetitle">Title</label>  
+                    <label for="changetitle">Title: </label>  
                     <input className="" id="changetitle" onChange={(e)=> setTitle(e.target.value)} value={title} type="text" placeholder="Title"/>
                     
                 </div>
                 <div className="">   
-                    <label for="changepost">Post</label> 
-                    <input className="" id="changepost" onChange={(e)=> setPost(e.target.value)} value={post} />          
+                    <div><label for="changepost">Post: </label></div>      
+                    <textarea className="" id="changepost" onChange={(e)=> setPost(e.target.value)} value={post} cols="180" rows="10" placeholder="Post"/> 
                </div>
-               {img ? <img src={img}/> : <img src="https://via.placeholder.com/200x250.png?text=No+Image+Selected"/>}
-                <div className="">    
+               <div>Date: {date}</div>
+               <div className="">    
                     <input className="" id="fileUpload" onChange={handleImage} type="file" placeholder="Image" accept=".jpeg, .png, .jpg"/>
                 </div>
+               <div>
+               {img ? <img src={img} width="400px" height="400px" /> : <img src="https://via.placeholder.com/10x10.png?text=No+Image+Selected" style={{visibility:"hidden"}}/>}
+               </div>
                 {prompt}
                 <button className="" onClick={handleEdit}>Update Post</button>
             </form>

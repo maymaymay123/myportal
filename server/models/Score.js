@@ -3,7 +3,7 @@ const mongoose = require('mongoose');
 const ScoreSchema = new mongoose.Schema(
     {
         email: {type: String, required: true},
-        score:{ type: Number, required: true},
+        highestscore:{ type: Number, default: 0},
     }, 
     {   
         collection: "score"

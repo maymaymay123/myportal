@@ -33,7 +33,7 @@ const EditTodo = (props) => {
             console.log("THIS",data);
         })
         .catch((error)=> {
-            console.log({status: 'editbad', msg: error.message})
+            console.log({status: 'edittodobad', msg: error.message})
         })
     }
     
@@ -80,9 +80,9 @@ const EditTodo = (props) => {
                 <div className=""> 
                     <label for="changeSelect">Priority</label>   
                     <select className="form-select" id="changeSelect" onChange={(e)=> setPriority(e.target.value)} value={priority}>
-                        <option value="High">High</option>
-                        <option value="Medium">Medium</option>
                         <option value="Low">Low</option>
+                        <option value="Medium">Medium</option>
+                        <option value="High">High</option>
                     </select>    
                </div>
                 {prompt}

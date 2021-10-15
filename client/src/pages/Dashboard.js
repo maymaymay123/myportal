@@ -1,5 +1,5 @@
 import React from 'react'
-import Navbar from '../components/Navbar'
+import Navigation from '../components/Navigation'
 import UserContext from '../components/UserContext';
 import axios from 'axios';
 import {Link, NavLink} from "react-router-dom"
@@ -21,11 +21,9 @@ const Dashboard = (props) => {
     }
     return (
         <UserContext.Provider value={{username, setUsername, email, setEmail}}>
-            <div>
-                {email && (<div>Hi, <b>{username} </b></div>)}
-                <Logout />
-                <Navbar />
-            </div>
+                <Navigation />
+            
+            <img id="pic" src="./flintstone.png" />
 
         </UserContext.Provider>
     )

@@ -3,6 +3,7 @@ import axios from 'axios';
 import UserContext from './UserContext'
 import {Link} from "react-router-dom";
 import Features from './Features'
+import styles from '../styles.css'
 
 const Register = () => {
 
@@ -51,7 +52,7 @@ const Register = () => {
 
 
     return (
-        <div className="">
+        <div className="registerpage">
             <Link to="/login">Login</Link>
             <div className="">
                 <h4>Create New Account </h4>
@@ -74,6 +75,7 @@ const Register = () => {
                     <button className="" type="submit">Create Account</button>
                 </div>
             </form> 
+            <img id="pic" src="./flintstone.png" />
             <Features />
         </div>
     )

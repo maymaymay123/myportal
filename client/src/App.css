@@ -1,42 +1,28 @@
-.App {
-  text-align: center;
-  
+
+.highestscore{
+  width: 330px;
+  height:160px;
+  background-color: black;
+  line-height: 50px;
+  font-size: 50px;
+  color: white;
+  display: inline-block;
+  margin: 20px;
+
 }
 
 .wholecircle{
-  position: absolute;
-  float: right;
+  display: inline-block;
+
 }
 .frame {
-  min-height: 100vh;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  font-size: calc(10px + 2vmin);
+  font-size: 30px;
   color: white;
-  float: right;
-}
-
-
-.colorCard {
-
-  height: 200px;
-  width: 200px;
-  flex-wrap: wrap;
-  border-radius: 50%;
-  border-style: solid;
-  border-width: 10px;
 }
 
 .cardWrapper {
-  margin-top: 300px;
-  display: flex;
   width: 400px;
-  flex-wrap: wrap;
   border-radius: 50%;
-  border-style: solid;
-  border-width: 10px;
 }
 
 .startButton {
@@ -46,6 +32,7 @@
   padding-bottom: 20px;
   border-radius: 20px;
   top: 45%;
+  left: 740px;
 }
 
 .score {
@@ -56,39 +43,35 @@
   border-radius: 50%;
   line-height: 100px;
   font-size: 50px;
+  text-align: center;
   top: 45%;
+  left: 740px;
 }
 
 .lost {
   position: absolute;
   width: 300px;
-  height:150px;
+  height:170px;
   background-color: black;
-  line-height: 100px;
-  font-size: 50px;
+  border-radius: 50%;
+  font-size: 25px;
   display: flex;
   justify-content: center;
   align-items: center;
   flex-direction: column;
-  left: 5%;
-  top: 35%;
+  left: 630px;
 }
 
-.highestscore{
-  position: relative;
-  width: 350px;
-  height:150px;
-  background-color: black;
-  line-height: 100px;
-  font-size: 50px;
-  color: white;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  flex-direction: column;
-  left: 5%;
-  top: 10%;
+
+.colorCard {
+  height: 200px;
+  width: 200px;
+  flex-wrap: wrap;
+  border-radius: 50%;
+  border-style: solid;
+  border-width: 10px;
 }
+
 .green.flash.flash {
   border: 3px solid white;
   border-radius: 5px;
@@ -163,6 +146,7 @@
   -webkit-box-sizing: border-box;
   background-color: blue;
 }
+
 .red {
   position: absolute;
   height: 250px;

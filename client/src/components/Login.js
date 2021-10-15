@@ -2,6 +2,7 @@ import React, {useState, useContext} from "react";
 import axios from 'axios';
 import {Link} from "react-router-dom"
 import Features from './Features'
+import styles from '../styles.css'
 
 const Login = () => {
     const [username, setUsername] = useState("")
@@ -38,7 +39,7 @@ const Login = () => {
         })
     }
     return (
-        <div>
+        <div className="loginpage">
             <form id="login" action="" onSubmit={e=>handleLogin(e)} >
                 {msg}
                 <div className="">
@@ -56,6 +57,7 @@ const Login = () => {
                 </div>
                 <a href="./register" style={{backgroundColor:"white"}}>Create New Account</a>
             </form>
+            <img id="pic" src="./flintstone.png" />
             <Features />
         </div>
     )

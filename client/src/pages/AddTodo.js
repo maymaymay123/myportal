@@ -44,8 +44,8 @@ const AddTodo = (props) => {
         <div className="">
             <form onSubmit={handleSubmit}>                   
                     <div className="">    
-                        <input className="" id="inputtodo" onChange={(e)=> setTodo(e.target.value)} value={todo} type="text" placeholder="Todo"/>
                         <label for="inputtodo">Todo: </label>
+                        <input className="" id="inputtodo" onChange={(e)=> setTodo(e.target.value)} value={todo} type="text" placeholder="Todo"/>
                     </div>
                     <div className="">    
                         <label for="inputdescription">Description: </label>
@@ -54,14 +54,14 @@ const AddTodo = (props) => {
                     <div className=""> 
                         <label for="floatingSelect">Priority: </label>   
                         <select className="form-select" id="floatingSelect" onChange={(e)=> setPriority(e.target.value)}>
-                            <option value="High">High</option>
-                            <option value="Medium">Medium</option>
                             <option value="Low">Low</option>
+                            <option value="Medium">Medium</option>
+                            <option value="High">High</option>
                         </select>
                     </div>
                 <br/>
                 {prompt} 
-                <button className="" onClick={handleSubmit} href="./todo" >Add Todo</button>
+                <button className="" onClick={handleSubmit} href="./todo" >Adddd Todo</button>
             </form>
         </div>
     )

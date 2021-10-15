@@ -1,15 +1,7 @@
 module.exports = [
     {
-        score: "80",
+        highestscore: "1",
         email: "test@test.com",
     },
-    {
-        score: "100",
-        email: "test@test.com",
-    },
-    {
-        score: "70",
-        email: "test@test.com",
-    }
 
 ]

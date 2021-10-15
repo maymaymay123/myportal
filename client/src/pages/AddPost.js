@@ -1,11 +1,14 @@
 import React, { useState } from "react";
 import axios from 'axios';
+import { Link, useParams } from "react-router-dom";
 
 const AddPost = (props) => {
-
+    const currentDate = new Date();
+    const isoDate = currentDate.toISOString().split("T")[0];
     const [title, setTitle] = useState('')
     const [post, setPost] = useState('')
-    const [date, setDate] = useState('')
+    const [date, setDate] = useState(isoDate)
+    
     const [img, setImg] = useState('')
     const [prompt, setPrompt] = useState('');
     const email = props.email;
@@ -40,10 +43,10 @@ const AddPost = (props) => {
             img,
             email,
         };
-        if (!(title && post && date)){
+        if (!(title && post)){
             setPrompt(
                 <alert onClose={() => setPrompt(false)}>
-                    Please enter all fields!
+                    Title and Post should not be empty!
                 </alert>
                 )
         } 
@@ -53,7 +56,6 @@ const AddPost = (props) => {
             console.log('posted', response);
             setTitle('');
             setPost('');
-            setDate('')
             setImg('')
             window.location.href = "/blog";
         })
@@ -62,28 +64,30 @@ const AddPost = (props) => {
         })
     }
     return (
-        <div className="">
+        <div className="" style={{textAlign:"center", backgroundColor: "white", width:"1590px", height:"1000px" }}>
+            <Link to="../blog">Blog Page</Link>
+
+            {prompt} 
             <form onSubmit={handleSubmit}>                   
                     <div className="">  
-                        <label for="inputtitle">Title</label>  
+                        <label for="inputtitle">Title: </label>  
                         <input className="" id="inputtitle" onChange={(e)=> setTitle(e.target.value)} value={title} type="text" placeholder="Title"/>
                         
                     </div> 
                     <div className="">  
-                        <label for="inputpost">Post</label>  
-                        <input className="" id="inputpost" onChange={(e)=> setPost(e.target.value)} value={post} type="textarea" placeholder="Post"/>
+                        <div><label for="inputpost">Post: </label></div>
+                        <textarea className="" id="inputpost" onChange={(e)=> setPost(e.target.value)} value={post} cols="180" rows="10" placeholder="Post"/>
                     </div>
                     <div className="">  
-                        <label for="inputdate">Date</label>
-                        <input className="" id="inputdate" onChange={(e)=> setDate(e.target.value)} value={date} type="date" placeholder="Date"/>
+                        Date: {date}
                     </div>
                     <div className="">    
-                        <input className="form-control" id="fileUpload" onChange={handleImage} type="file" placeholder="Image" accept=".jpeg, .png, .jpg"/>
+                        <input className="" id="fileUpload" onChange={handleImage} type="file" placeholder="Image" accept=".jpeg, .png, .jpg"/>
                     </div>
-                    {img ? <img className="" src={img}/> : <img className="" src="https://via.placeholder.com/400x250.png?text=No+Image+Selected"/>}
+                    {img ? <img src={img} className="" width="400px" height="400px"/> : <img className="" src="https://via.placeholder.com/10x10.png?text=No+Image+Selected" style={{visibility:"hidden"}}/>}
                 <br/>
                 <br/>
-                {prompt} 
+        
                 <button className="" onClick={handleSubmit} href="../blog" >Add Post</button>
             </form>
         </div>

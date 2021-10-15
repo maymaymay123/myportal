@@ -78,11 +78,18 @@ function App() {
 
     return (
         
-        <div className="App"> 
-            <div style={{ backgroundImage: `url(${background})`, height: "710px",backgroundSize: "cover"}}>
-                <h1>Welcome to the NomadDo</h1>
-                <h2>How are you today?</h2>
-                <img id="pic" src="./flintstone.png" />
+        <div className=""> 
+            <div style={{ backgroundImage: `url(${background})`, height: "1010px",backgroundSize: "cover", backgroundRepeat:"repeat-y"}}>
+                <Link to="/dashboard"><img src='/homeicon.png' width="50px" height="50px" float="left" style={{margin:"25px"}}/></Link>
+                <span style={{position:"absolute", marginLeft:"450px"}}><h1>Welcome to the myportal</h1></span>
+                <span style={{position:"absolute", margin:"40px", marginLeft:"450px"}}><h2>How are you today?</h2></span>
+                <span style={{fontSize:"20px", color:"white", position:"absolute",marginTop:"25px", marginLeft: "1250px"}}>
+                    {email && (<div>Hi, <b>{username} </b></div>)}
+                    <Logout />
+                </span>
+                <hr style={{border:"white solid 3px"}} />
+                <br/>
+                
                 <UserContext.Provider value={{username, setUsername, email, setEmail}}>
                     {username ? <Link to="/dashboard"></Link>:<Link to="/"></Link>}
                     <main>

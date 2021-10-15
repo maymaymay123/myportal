@@ -3,13 +3,13 @@ import { Link, useParams } from "react-router-dom";
 import axios from "axios";
 
 const ShowPost = () => {
-
+    
     const {id} = useParams();
-
+    const [date, setDate] = useState('')
     const [data, setData] = useState([]);
     const uri = "http://localhost:5000/"
 
-    console.log(id);
+    console.log("id",id);
 
     useEffect(()=>{
         getOne();
@@ -20,6 +20,11 @@ const ShowPost = () => {
         .then(response =>{
             console.log('received data');
             console.log(response.data);
+            let currentDate = new Date(response.data.date);
+    
+            let isoDate = currentDate.toISOString().split("T")[0];
+            console.log('isodate',isoDate)
+            setDate(isoDate)
             setData(response.data);
             console.log("THIS",data);
         })
@@ -32,7 +37,7 @@ const ShowPost = () => {
         axios.delete((uri + `blog/delete/${id}`))
         .then(response => {
             console.log('deleted one item');
-            window.location.href = ("../blog");
+            window.location.href = ("/blog");
         })
         .catch((error)=> {
             console.log({status: 'bad', msg: error.message})
@@ -41,22 +46,23 @@ const ShowPost = () => {
 
 
     return (
-        <div className="container">
-            <div className="">
+        <div className="">
+            <div className="" style={{textAlign:"center", backgroundColor: "white", width:"1570px",height:"1000px"}}>
+                <Link to="../blog">Blog Page</Link>
                 <div>
                     <h3>{data.title}</h3>
                 </div> 
                 <div>    
-                    <h6>{data.date}</h6>
+                    <p>{date}</p>
                 </div> 
-                <div className="">
-                    {data.img ? <img src={data.img} className=""/> : <img src="https://via.placeholder.com/200x250.png?text=No+Image+Selected"/>}
+                <div className="" >
+                    {data.img ? <img src={data.img} width="400px" height="400px" className=""/> : <img src="https://via.placeholder.com/10x10.png?text=No+Image+Selected" style={{visibility:"hidden"}}/>}
                 </div>     
                 <div>
                     <h3>{data.post}</h3>
                 </div> 
-                <Link to={`..blog/edit/${data._id}`} className="" id={data._id}>Edit</Link>
-                <a className="btn btn-dark" onClick={handleDelete} id={data._id}>Remove</a>
+                <Link to={`/blog/edit/${data._id}`} className="" id={data._id}>Edit</Link>
+                <a className="" onClick={handleDelete} id={data._id}>Remove</a>
                 </div>
 
         </div>

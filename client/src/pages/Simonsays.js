@@ -4,12 +4,13 @@ import ColorCard from "../components/ColorCard";
 import timeout from "../components/util";
 import {Link} from 'react-router-dom';
 import axios from 'axios';
-import Logout from '../components/Logout'
 
 function Simonsays(props) {
 
-    const [data, setData] = useState([]);
+
     const uri = "http://localhost:5000/"
+    const [highestscore,setHighestscore] = useState();
+    const [data, setData] = useState([])
 
     useEffect(()=>{
         getData();
@@ -17,22 +18,27 @@ function Simonsays(props) {
     
     function getData (){
    
-        axios.get((uri + `score/${props.email}`))
+        axios.get((uri + `highestscore/${props.email}`))
         .then(response =>{
             console.log('received data');
-            setData(response.data);
-            console.log('data',data); 
+            console.log('dataaaaa',response.data); 
+            setData(response.data)
+            console.log('score',response.data[0].highestscore);
+            let scorenow = response.data[0].highestscore;
+            setHighestscore(scorenow);
+            console.log("check score here", highestscore) //print undefined
         })
         .catch((error)=> {
             console.log({status: 'bad', msg: error.message})
         })
     }
 
+
     const [isOn, setIsOn] = useState(false);
 
     const colorList = ["green", "red", "yellow", "blue"];
 
-    const initPlay = {
+    let startPlay = {
         isDisplay: false,
         colors: [],
         score: 0,
@@ -40,9 +46,8 @@ function Simonsays(props) {
         userColors: [],
     };
 
-    const [play, setPlay] = useState(initPlay);
+    const [game, setGame] = useState(startPlay);
     const [flashColor, setFlashColor] = useState("");
-    const [audio, setAudio] = useState("")
 
     function startHandle() {
         setIsOn(true);
@@ -50,41 +55,41 @@ function Simonsays(props) {
 
     useEffect(() => {
         if (isOn) {
-            setPlay({ ...initPlay, isDisplay: true });
+            setGame({ ...startPlay, isDisplay: true });
         } else {
-            setPlay(initPlay);
+            setGame(startPlay);
         }
     }, [isOn]);
 
     useEffect(() => {
-        if (isOn && play.isDisplay) {
+        if (isOn && game.isDisplay) {
             let newColor = colorList[Math.floor(Math.random() * 4)];
 
-            const copyColors = [...play.colors];
+            const copyColors = [...game.colors];
             copyColors.push(newColor);
-            setPlay({ ...play, colors: copyColors });
+            setGame({ ...game, colors: copyColors });
         }
-    }, [isOn, play.isDisplay]);
+    }, [isOn, game.isDisplay]);
 
     useEffect(() => {
-        if (isOn && play.isDisplay && play.colors.length) {
+        if (isOn && game.isDisplay && game.colors.length) {
             displayColors();
         }
-    }, [isOn, play.isDisplay, play.colors.length]);
+    }, [isOn, game.isDisplay, game.colors.length]);
 
     async function displayColors() {
         await timeout(500);
-        for (let i = 0; i < play.colors.length; i++) {
-            setFlashColor(play.colors[i]);
+        for (let i = 0; i < game.colors.length; i++) {
+            setFlashColor(game.colors[i]);
             await timeout(500);
             setFlashColor("");
             await timeout(500);
 
-        if (i === play.colors.length - 1) {
-            const copyColors = [...play.colors];
+        if (i === game.colors.length - 1) {
+            const copyColors = [...game.colors];
 
-            setPlay({
-                ...play,
+            setGame({
+                ...game,
                 isDisplay: false,
                 userPlay: true,
                 userColors: copyColors.reverse(),
@@ -94,45 +99,66 @@ function Simonsays(props) {
     }
 
     async function cardClickHandle(color) {
-        if (!play.isDisplay && play.userPlay) {
-            const copyUserColors = [...play.userColors];
+        if (!game.isDisplay && game.userPlay) {
+            const copyUserColors = [...game.userColors];
             const lastColor = copyUserColors.pop();
             setFlashColor(color);
 
             if (color === lastColor) {
                 if (copyUserColors.length) {
-                    setPlay({ ...play, userColors: copyUserColors });
+                    setGame({ ...game, userColors: copyUserColors });
                 } else {
                     await timeout(500);
-                    setPlay({
-                    ...play,
+                    setGame({
+                    ...game,
                     isDisplay: true,
                     userPlay: false,
-                    score: play.colors.length,
+                    score: game.colors.length,
                     userColors: [],
                 });
             }
         } else {
             await timeout(500);
-            setPlay({ ...initPlay, score: play.colors.length });
+            setGame({ ...startPlay, score: game.colors.length-1 });
         }
         await timeout(500);
         setFlashColor("");
         }
     }
 
-    function closeHandle() {
+ 
+    function closeHandle(e) {
+        e.preventDefault();
+        if (game.score > highestscore) {
+            console.log("check game.score here", game.score)
+            setHighestscore(game.score);
+            console.log('highestScore',highestscore)
+            console.log("check1 ")
+        }
         setIsOn(false);
+        let score = game.score;
+        const data = {
+            highestscore:score,
+        }
+    
+        console.log("check2 ")
+        console.log('check2 data',data)
+        axios.put((uri + `highestscore/${props.email}`), data)
+        .then(response =>{
+            console.log('received edited data');
+            console.log('see the new data',response.data);
+            console.log("THIS new data",data);
+            //window.location.href = "/game";
+        })
+        .catch((error)=> {
+            console.log({status: 'bad cant submit', msg: error.message})
+        })
     }
 
 
     return (
         <div className="App">
-            <Link to="/dashboard">Dashboard</Link>
-            {props.email && (<div>Hi, <b>{props.username} </b></div>)}
-            <Logout />
-            <hr />
-            <div className="highestscore">Highest Score :</div>
+            <div className="highestscore">Personal Highest Score : {highestscore && highestscore}</div>
             <div className="wholecircle">
                 <div className="frame">
                     <div className="cardWrapper">
@@ -148,19 +174,19 @@ function Simonsays(props) {
                         ))}
                     </div>
 
-                    {isOn && !play.isDisplay && !play.userPlay && play.score && (
+                    {isOn && !game.isDisplay && !game.userPlay && game.score && (
                     <div className="lost">
-                        <div>Your Score: {play.score}</div>
+                        <div>Your Score: {game.score}</div>
                         <button onClick={closeHandle}>Replay</button>
                     </div>
                     )}
-                    {!isOn && !play.score && (
+                    {!isOn && !game.score && (
                     <button onClick={startHandle} className="startButton">
                         Start
                     </button>
                     )}
-                    {isOn && (play.isDisplay || play.userPlay) && (
-                    <div className="score">{play.score}</div>
+                    {isOn && (game.isDisplay || game.userPlay) && (
+                    <div className="score">{game.score}</div>
                     )}
                 </div>
             </div>

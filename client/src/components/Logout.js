@@ -2,6 +2,7 @@ import React, {useState} from 'react'
 import UserContext from '../components/UserContext';
 import axios from 'axios';
 import {Link, NavLink} from "react-router-dom"
+import styles from "../styles.css"
 
 const Logout = (props) => {
 
@@ -23,8 +24,8 @@ const Logout = (props) => {
 
     return (
         <div>
-            <div>
-                <NavLink to={"/logout"}><div onClick={()=> handleLogout()}>Logout</div></NavLink>
+            <div className="logoutword">
+                <NavLink to={"/logout"}><div onClick={()=> handleLogout()}><strong>Logout</strong></div></NavLink>
             </div>
         </div>
     )
