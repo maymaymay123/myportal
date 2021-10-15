@@ -119,7 +119,7 @@ function Simonsays(props) {
             }
         } else {
             await timeout(500);
-            setGame({ ...startPlay, score: game.colors.length-1 });
+            setGame({ ...startPlay, score: game.colors.length });
         }
         await timeout(500);
         setFlashColor("");

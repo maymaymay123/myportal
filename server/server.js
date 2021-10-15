@@ -222,7 +222,7 @@ app.get("/blogseed", async (req, res) => {
 
 ////////////////////////////////////////////////////////////////////////////////////////
 
-// todo maybe delete
+// todo
 app.get('/todo/show/:id', async (req, res) => {
     console.log('getting one')
     try {

@@ -38,7 +38,6 @@ const Todo = (props) => {
             todo,
             description,
             priority,
-            email
         };
         if (!(todo && description && priority)){
             setPrompt(
@@ -102,7 +101,7 @@ const Todo = (props) => {
     }
 
     return (
-        <div className="center" style={{textAlign:"center", backgroundColor: "white", width:"1600px", height:"900px"}}>
+        <div className="center" style={{textAlign:"center", backgroundColor: "white", width:"1570px", height:"900px"}}>
         <div className="" >
             <h5>You have <span className="">{data.length}</span> todos!</h5>
         </div>
@@ -114,7 +113,7 @@ const Todo = (props) => {
             </div>
             <div className="">    
                 <label for="inputdescription">Description: </label>
-                <input className="" id="inputdescription" onChange={(e)=> setDescription(e.target.value)} value={description} type="text" placeholder="Description"/>
+                <input className="" id="inputdescription" onChange={(e)=> setDescription(e.target.value)} value={description} type="text" placeholder="Desscription"/>
             </div>
             <div className=""> 
                 <label for="floatingSelect">Priority: </label>   
@@ -142,7 +141,7 @@ const Todo = (props) => {
                 return (
                         <div id={element._id}>
                             <div scope="row">{index + 1}</div>
-                            <div style={{backgroundColor: color}}><Link to={`todo/show/${element._id}`}>{element.todo}</Link></div>
+                            <div style={{backgroundColor: color}}>{element.todo}</div>
                             <div>{element.description}</div>
                             <div> Priority: {element.priority}</div>
                             <div><Link to={`todo/edit/${element._id}`}><i className="" id={element._id}>Edit</i></Link></div>

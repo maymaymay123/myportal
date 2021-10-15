@@ -18,7 +18,6 @@ import ShowPost from './pages/ShowPost'
 import AddPost from './pages/AddPost'
 import EditPost from './pages/EditPost'
 import ShowTodo from './pages/ShowTodo'
-import AddTodo from './pages/AddTodo'
 import EditTodo from './pages/EditTodo'
 
 function App() {
@@ -117,9 +116,6 @@ function App() {
 
                             <Route path="/todo/show/:id">
                                 <ShowTodo username={username} email={email}/>
-                            </Route>
-                            <Route path="/todo/add">
-                                <AddTodo username={username} email={email}/>
                             </Route>
                             <Route path="/todo/edit/:id">
                                 <EditTodo username={username} email={email}/>

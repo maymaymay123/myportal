@@ -2,7 +2,7 @@ import React, {useState, useEffect} from "react";
 import { Link, useParams } from "react-router-dom";
 import axios from "axios";
 
-const EditTodo = (props) => {
+const EditTodo = () => {
 
     const [todo, setTodo] = useState();
     const [description, setDescription] = useState();
@@ -17,9 +17,8 @@ const EditTodo = (props) => {
     console.log(id);
 
     useEffect(()=>{
-        console.log("hehe")
         getOne();
-        console.log('useeffect')
+        console.log("hehe")
     },[])
     
     function getOne() {
@@ -44,7 +43,7 @@ const EditTodo = (props) => {
             description,
             priority,
         }
-        if (!(todo && description )){
+        if (!(todo && description && priority)){
             setPrompt(
                 <alert onClose={() => setPrompt(false)}>
                     Please enter all fields!
@@ -67,7 +66,7 @@ const EditTodo = (props) => {
     console.log();
 
     return (
-        <div className="">
+        <div className="" style={{textAlign:"center", backgroundColor: "white", width:"1570px", height:"1000px"}}>
             <form>
                 <div className="">  
                     <label for="changetodo">Todo</label>  
@@ -79,14 +78,14 @@ const EditTodo = (props) => {
                 </div>
                 <div className=""> 
                     <label for="changeSelect">Priority</label>   
-                    <select className="form-select" id="changeSelect" onChange={(e)=> setPriority(e.target.value)} value={priority}>
+                    <select className="" id="changeSelect" onChange={(e)=> setPriority(e.target.value)} value={priority}>
                         <option value="Low">Low</option>
                         <option value="Medium">Medium</option>
                         <option value="High">High</option>
                     </select>    
                </div>
                 {prompt}
-                <button className="" onClick={handleEdit}>Update Todo</button>
+                <button className="" onClick={handleEdit}>Edit Todo</button>
             </form>
         </div>
     )

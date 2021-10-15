@@ -35,7 +35,7 @@ const Translator = (props) => {
                     <form action="localhost:5000/speechtranslator" method="post" >
                         <div class="form-group">
                             <label for="speech">Write Text:</label>
-                            <textarea class="form-control" name="speech" required id="speech" cols="30" rows="10" placeholder="text to translate"></textarea>
+                            <textarea class="form-control" name="speech" required id="speech" cols="20" rows="7" placeholder="text to translate"></textarea>
                         </div>
                 
                         <div class="form-group">
@@ -96,12 +96,12 @@ const Translator = (props) => {
                         </div>
                         <div class="form-group">
                             <label for="translated">Translated Text:</label>
-                            <textarea class="form-control" name="translated" id="" cols="30" rows="10" placeholder="translated text"/>
+                            <textarea class="form-control" name="translated" id="" cols="20" rows="7" placeholder="translated text"/>
                         </div>
                     </form>
                 </div>
             </div>
-            <span style={{ display:"inline-block", verticalAlign:"top", backgroundColor:"white", margin:"50px", width:"500px", height:"600px"}}>
+            <span style={{ display:"inline-block", verticalAlign:"top", backgroundColor:"white", margin:"50px", width:"500px", height:"480px"}}>
                 <h1>History: </h1>
             </span>
         </div>
