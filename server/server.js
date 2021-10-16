@@ -222,7 +222,7 @@ app.get("/blogseed", async (req, res) => {
 
 ////////////////////////////////////////////////////////////////////////////////////////
 
-// todo
+// todo maybe delete
 app.get('/todo/show/:id', async (req, res) => {
     console.log('getting one')
     try {
@@ -254,6 +254,18 @@ app.put("/todo/edit/:id", async (req, res) => {
         console.log({status: 'ok', msg: 'edited'});
     } catch (error) {
         console.log({status: 'bad', msg: error.message});
+    }
+})
+
+// score
+app.put("/highestscore/:email", async (req, res) => {
+    try {
+        await ScoreModel.updateOne({email: req.params.email}, req.body); 
+        const data = await ScoreModel.findOne({_id: req.params.id}); 
+        res.send(data);
+        console.log({status: 'oksssss', msg: 'edited'});
+    } catch (error) {
+        console.log({status: 'bad server score', msg: error.message});
     }
 })
 

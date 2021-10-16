@@ -1,19 +1,19 @@
 module.exports = [
     {
         todo: "Go to gym",
-        description: "do 100 pull ups",
+        completed: false,
         priority: "High",
         email: "test@test.com",
     },
     {
         todo: "Watch Simpsons",
-        description: "watch 10 episodes",
+        completed: false,
         priority: "Low",
         email: "test@test.com",
     },
     {
         todo: "Make dental appointment",
-        description: "book 23 Oct 2021",
+        completed: true,
         priority: "Medium",
         email: "test@test.com",
     },
