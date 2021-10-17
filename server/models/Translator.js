@@ -1,9 +1,11 @@
 const mongoose = require('mongoose');
 
 const TranslatorSchema = new mongoose.Schema(
-    {
-        original: {type: String, required: true },
-        translated: {type: String, required: true },
+    {   
+        from: {type: String },
+        to: {type: String, required: true},
+        text: {type: String, required: true },
+        translated: {type: String },
         email: {type: String, required: true},
     },  
     {   

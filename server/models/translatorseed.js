@@ -1,16 +1,22 @@
 module.exports = [
     {
-        original: "book",
+        from: "en",
+        to: "es",
+        text: "book",
         translated: "libro",
         email: "test@test.com",
     },
     {
-        original: "now",
+        from: "en",
+        to: "es",
+        text: "now",
         translated: "ahora",
         email: "test@test.com",
     },
     {
-        original: "girl",
+        from: "en",
+        to: "es",
+        text: "girl",
         translated: "nina",
         email: "test@test.com",
     }

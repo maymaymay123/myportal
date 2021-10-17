@@ -5,8 +5,8 @@ const cors = require('cors');
 const jwt = require('jsonwebtoken');
 require('dotenv').config()
 const cookieParser = require("cookie-parser")
-const translate = require('@vitalets/google-translate-api');
-
+//const translate = require('@vitalets/google-translate-api');
+const translate = require('translate-google')
 
 
 const secret = process.env.SECRET;
@@ -155,9 +155,9 @@ app.get("/translator/:email", async (req, res) => {
     try {
         const data = await TranslatorModel.find({email: req.params.email}); 
         res.send(data);
-        console.log({status: 'ok', msg: 'get'});
+        console.log({status: 'ok translator server', msg: 'get'});
     } catch (error) {
-        console.log({status: 'bad', msg: error.message});
+        console.log({status: 'bad translator server', msg: error.message});
     }
 })
 
@@ -222,17 +222,17 @@ app.get("/blogseed", async (req, res) => {
 
 ////////////////////////////////////////////////////////////////////////////////////////
 
-// todo maybe delete
-app.get('/todo/show/:id', async (req, res) => {
-    console.log('getting one')
-    try {
-        const data = await TodoModel.findOne({_id: req.params.id});
-        res.send(data);
-        console.log({status: 'ok', msg: 'get one'});
-    } catch (error) {
-        console.log({status: 'bad', msg: error.message});
-    }
-})
+// // todo maybe delete
+// app.get('/todo/show/:id', async (req, res) => {
+//     console.log('getting one')
+//     try {
+//         const data = await TodoModel.findOne({_id: req.params.id});
+//         res.send(data);
+//         console.log({status: 'ok', msg: 'get one'});
+//     } catch (error) {
+//         console.log({status: 'bad', msg: error.message});
+//     }
+// })
 
 // todo 
 app.post("/todo/add", async (req, res) => {
@@ -257,17 +257,6 @@ app.put("/todo/edit/:id", async (req, res) => {
     }
 })
 
-// score
-app.put("/highestscore/:email", async (req, res) => {
-    try {
-        await ScoreModel.updateOne({email: req.params.email}, req.body); 
-        const data = await ScoreModel.findOne({_id: req.params.id}); 
-        res.send(data);
-        console.log({status: 'oksssss', msg: 'edited'});
-    } catch (error) {
-        console.log({status: 'bad server score', msg: error.message});
-    }
-})
 
 // todo
 app.delete("/todo/delete/:id", async (req, res) => {
@@ -341,66 +330,114 @@ app.put("/highestscore/:email", async (req, res) => {
     }
 })
 
-
+////////////////////////////////////////////////
+//problems to solve
 // translator
-app.post("/translator/translate", async (req, res) => {
-    try {
-        const data = await TranslatorModel.create(req.body); 
-        res.send({status: 'ok', msg: 'added'});
-    } catch (error) {
-        console.log({status: 'bad', msg: error.message});
-    }
+// app.post("/translator/add", async (req, res) => {
+//     try {
+//         const data = await TranslatorModel.create(req.body); 
+//         res.send({status: 'ok', msg: 'added'});
+//     } catch (error) {
+//         console.log({status: 'bad translator cannot add', msg: error.message});
+//     }
+// })
+
+// app.get('/translator', async (req,res)=>{
+//     translate('I speak Chinese', {to: 'zh-cn'}).
+//     then(respond => {
+//         console.log(respond);
+//         res.send(respond)
+
+//         //=> "我说中文"
+//     }).catch(err => {
+//         console.error(err);
+//     })
+// })
+
+// app.get('/translator',(req,res) => {
+//     const data = {title:"return translated content",translated:""}
+//     console.log("can get here?")
+//     res.send(data)
+// })
+  
+
+app.post('/translator', async (req,res) => {
+    console.log(req.body.text)
+    console.log(req.body.to)
+    translate(req.body.text, {to: req.body.to}).then(response => {
+    console.log("response server",response)
+    console.log("translated content is: ",response)
+    const data = TranslatorModel.create({text:req.body.text, to:req.body.to, translated:response, email:req.body.email});
+    console.log("final date is: ",data)
+
+    res.send({title:"return translated content",translated: response})
+    }).catch(err => {
+        console.error(err);
+    });
+  
 })
 
-// // translator
-// app.get('translator/show/:id', async (req, res) => {
-//     console.log('getting one')
+// app.post('/pokemon',(req,res)=>{
+//     pokemon.push({
+//         name: req.body.name,
+//         image: req.body.img,
+//         type: [req.body.type],
+//         stats: {
+//         hp: req.body.hp,
+//         attack: req.body.attack,
+//         defense: req.body.defense,
+//         spattack: req.body.spattack,
+//         spdefense: req.body.spdefense,
+//         speed: req.body.speed
+//         }
+//     })
+//     res.redirect('/pokemon')
+// })
+
+// app.post("/todo/add", async (req, res) => {
+//     const data = await TodoModel.create(req.body);
 //     try {
-//         const data = await TodoModel.findOne({_id: req.params.id});
-//         res.send(data);
-//         console.log({status: 'ok', msg: 'get one'});
+//         await data.save()
+//         res.send({status: 'ok', msg: 'added'});
 //     } catch (error) {
 //         console.log({status: 'bad', msg: error.message});
 //     }
 // })
 
-app.get('/speechtranslator', async (req,res) => {
-    try {
-        const data = await TranslatorModel.findOne({_id: req.params.id});
-        res.send(data);
-        console.log({status: 'ok', msg: 'get one'});
-    } catch (error) {
-        console.log({status: 'bad', msg: error.message});
-    }
-  })
+// app.get('/translator',async (req,res) => {
+//     //res.render('speechtranslator.ejs',{title:"Text Translator",translated:""})
+//     res.send({title:"Text Translator",translated:""})
+// })
   
   
+// app.post('/translator',async (req,res) => {
+//     console.log("print the text",req.body.text)
+//     translate(req.body.text, {to: req.body.language}).then(response => {
+//     res.send({title:"Text Translator",translated:response.text})
+//     }).catch(error => {
+//         console.log({status: 'bad cannot translate', msg: error.message});
+//     });
+  
+// })
+
+
+
+app.get('/speechtranslator',(req,res) => {
+  res.render('speechtranslator.ejs',{title:"Text Translator",translated:""})
+})
+
+
 app.post('/speechtranslator',(req,res) => {
-    console.log(req.body.speech)
-    translate(req.body.speech, {to: req.body.language}).then(response => {
+
+  console.log(req.body.speech)
+
+  translate(req.body.speech, {to: req.body.language}).then(response => {
     res.render('speechtranslator.ejs',{title:"Text Translator",translated:response.text})
-  }).catch(err => {
-      console.error(err);
-  });
-  
-  })
+}).catch(err => {
+    console.error(err);
+});
 
-// app.get('/speechtranslator',(req,res) => {
-//   res.render('speechtranslator.ejs',{title:"Text Translator",translated:""})
-// })
-
-
-// app.post('/speechtranslator',(req,res) => {
-
-//   console.log(req.body.speech)
-
-//   translate(req.body.speech, {to: req.body.language}).then(response => {
-//     res.render('speechtranslator.ejs',{title:"Text Translator",translated:response.text})
-// }).catch(err => {
-//     console.error(err);
-// });
-
-// })
+})
 
 
 const PORT = process.env.PORT || 5000;
