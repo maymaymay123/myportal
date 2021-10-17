@@ -82,14 +82,13 @@ body{
 }
 
 .bubble {
-    background-color: lightgoldenrodyellow;
     position: relative;
     font-family: sans-serif;
     font-size: 18px;
     line-height: 24px;
     max-width: 470px;
     max-height: 500px;
-    background: #fff;
+    background: rgb(52, 50, 71);
     border-radius: 40px;
     padding: 24px;
     text-align: center;
@@ -104,13 +103,13 @@ body{
     width: 0;
     height: 0;
     position: absolute;
-    border-left: 24px solid #fff;
+    border-left: 24px solid rgb(52, 50, 71);
     border-right: 12px solid transparent;
-    border-top: 12px solid #fff;
+    border-top: 12px solid rgb(52, 50, 71);
     border-bottom: 20px solid transparent;
     border-style: solid;
     border-width: 0 0 50px 50px;
-    border-color: transparent transparent white transparent;
+    border-color: transparent transparent rgb(52, 50, 71) transparent;
     left: -45px;
     bottom: 200px;
   }

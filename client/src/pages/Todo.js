@@ -123,12 +123,12 @@ const Todo = (props) => {
         })
     }
 
-    
+    if (email){
     if (buttonstate==='create'){
     return (
         <div className="center" style={{textAlign:"center", backgroundColor: "white", width:"1600px", height:"900px"}}>
         <div className="" >
-            <h5>You have <span className="">{data.length}</span> todos!</h5>
+            <h5>You have <span className="">{data.length}</span> todo(s)!</h5>
         </div>
         {prompt}
             <form onSubmit={handleSubmit} >
@@ -156,9 +156,7 @@ const Todo = (props) => {
                     color = "red"; 
                 } else if (element.priority === "Medium") {
                     color = "yellow"
-                } else {
-                    color = "green"
-                }
+                } 
                 let decoration;
                 if (element.completed === true){
                     decoration = "line-through"
@@ -182,7 +180,7 @@ const Todo = (props) => {
         return (
             <div className="center" style={{textAlign:"center", backgroundColor: "white", width:"1600px", height:"900px"}}>
             <div className="" >
-                <h5>You have <span className="">{data.length}</span> todos!</h5>
+                <h5>You have <span className="">{data.length}</span> todo(s)!</h5>
             </div>
             {prompt}
                 <form >
@@ -216,9 +214,7 @@ const Todo = (props) => {
                         color = "red"; 
                     } else if (element.priority === "Medium") {
                         color = "yellow"
-                    } else {
-                        color = "green"
-                    }
+                    } 
                     let decoration;
                     if (element.completed === true){
                         decoration = "line-through"
@@ -237,6 +233,8 @@ const Todo = (props) => {
     
             </div>
             )
+    }} else {
+        return (<button style={{marginLeft:"700px"}}><Link to="/login">Please Log in</Link></button>)
     }
 }
 

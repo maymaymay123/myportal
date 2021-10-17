@@ -1,7 +1,6 @@
 import React, {useState, useEffect} from "react";
 import {Link} from 'react-router-dom';
 import axios from 'axios';
-import Logout from '../components/Logout'
 
 
 const Translator = (props) => {
@@ -9,7 +8,7 @@ const Translator = (props) => {
     const [data, setData] = useState([]);
     const uri = "http://localhost:5000/"
     const [from, setFrom] = useState('en')
-    const [to, setTo] = useState('')
+    const [to, setTo] = useState('af')
     const [text, setText] = useState('')
     const [translated, setTranslated] = useState('')
     const [prompt, setPrompt] = useState('')
@@ -39,32 +38,30 @@ const Translator = (props) => {
     function handleSubmit(e){
         e.preventDefault();
         const data = {
+            from,
             to,
             text,
             email
         };
         console.log("can reach here")
-        if (!(from && to && text)){
+        if (!(text)){
+            try{
             setPrompt(
                 <div onClose={() => setPrompt(false)} >
-                    Please enter all fields!
+                    Do you fill up all the fields?
                 </div>
                 )
-        } else if (!isNaN(text)) {
-            setPrompt(
-                <div onClose={() => setPrompt(false)} >
-                    All fields should be in string!
-                </div>
-            )
-        }
+            } catch (error) {
+                console.log("not filling up correctly", error)
+            }
+        } 
         console.log("can reach here too")
         axios.post((uri + "translator/"),data)
         .then(response =>{
             console.log('posted data',data)
-            // setFrom('en')
-            // setTo('');
             setText('');
             setTranslated('')
+            setPrompt('')
             getResult()
         })
         .catch((error)=> {
@@ -97,16 +94,18 @@ const Translator = (props) => {
     // lastItem = data[data.length - 1 ]
     // console.log("find last item",lastItem)
 
-    return ( 
+    if (email) {
+    return (
         <div>
-            <h1 class="">
+            <h1 className="">
                 Language Translator
             </h1>
             <div className="" style={{display:"inline-block", width:"900px", height:"900px", margin:"20px"}}>
                 <div>
+                    <div style={{color:"red",fontSize:"23px"}}>{prompt}</div>
                     <form onSubmit={handleSubmit} >
                     <div class="form-group">
-                        <label for="fromselect">Original Language:</label>
+                        <label for="fromselect" style={{color:"white"}}>Original Language:</label>
                         <select class="form-control" name="language" id="fromselect" onChange={(e)=> setFrom(e.target.value)}>
                             <option value="af">Afrikaans</option>
                             <option value="sq">Albanian</option>
@@ -155,11 +154,12 @@ const Translator = (props) => {
                         </select>
                     </div>
                         <div class="form-group">
-                            <label for="text">Write Text:</label>
-                            <textarea class="form-control" name="text" required id="text" onChange={(e)=> setText(e.target.value)} value={text} cols="20" rows="7" placeholder="text to translate"></textarea>
+                            <label for="text" style={{color:"white"}}>Write Text:</label>
+                            <textarea class="form-control" name="text" required id="text" onChange={(e)=> setText(e.target.value)} value={text} cols="20" rows="8" placeholder="text to translate"></textarea>
                         </div>
                 
                         <div class="form-group">
+                            <br/>
                             <label for="fromselect">Select Language to Translate:</label>
                             <select class="form-control" name="language" id="fromselect" onChange={(e)=> setTo(e.target.value)}>
                                 <option value="af" selected>Afrikaans</option>
@@ -216,7 +216,7 @@ const Translator = (props) => {
                         <div class="form-group">
                                 <div>
                                     <label for="translated">Translated Text:</label>
-                                    <div class="form-control" name="translated" id="" cols="40" rows="7">
+                                    <div className="form-control" id="translated" style={{height:"auto"}}>
                                         {translated}
                                     </div>
                                 </div>
@@ -224,9 +224,9 @@ const Translator = (props) => {
                     </form>
                 </div>
             </div> 
-            <span style={{ display:"inline-block", verticalAlign:"top", backgroundColor:"white", margin:"50px", width:"500px", height:"480px"}}>
+            <span style={{ display:"inline-block", verticalAlign:"top", backgroundColor:"white", margin:"50px", width:"500px", height:"auto"}}>
                 <h1>History: </h1>
-                {data.slice(0,5).map((element, index) => {
+                {data.slice(0,7).map((element, index) => {
                     return (
                         <div key={element._id} style={{textAlign:"center"}}>
                             <div> {element.from} &#8594; {element.to} </div>
@@ -236,8 +236,10 @@ const Translator = (props) => {
                 })}
             </span>
         </div>
-
     )
+    } else {
+        return (<button style={{marginLeft:"700px"}}><Link to="/login">Please Log in</Link></button>)
+    }
 }
 
 export default Translator

@@ -11,6 +11,7 @@ function Simonsays(props) {
     const uri = "http://localhost:5000/"
     const [highestscore,setHighestscore] = useState();
     const [data, setData] = useState([])
+    const email = props.email;
 
     useEffect(()=>{
         getData();
@@ -155,7 +156,7 @@ function Simonsays(props) {
         })
     }
 
-
+    if (email) {
     return (
         <div className="App">
             <div className="highestscore">Personal Highest Score : {highestscore && highestscore}</div>
@@ -191,7 +192,10 @@ function Simonsays(props) {
                 </div>
             </div>
         </div>
-    );
+    )
+    } else {
+        return (<button style={{marginLeft:"700px"}}><Link to="/login">Please Log in</Link></button>)
+    }
 }
 
 export default Simonsays;

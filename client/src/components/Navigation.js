@@ -31,13 +31,13 @@ const Navbar = (props) => {
                 <div id="content-container" className="bubble bubble-bottom-left" contenteditable>
                     {email && (<div>Hi, <b>{username} </b></div>)}
                         <span style={{display:"flex"}}>
-                            <NavLink to={"/game"}><div className="tohover" style={{backgroundColor:"pink", width:"200px", height:"200px"}}><div style={{padding:"80px 0"}}>Game</div></div></NavLink>
-                            <NavLink to={"/todo"}><div className="tohover" style={{backgroundColor:"lightblue", width:"200px", height:"200px", marginLeft:"20px"}}><div style={{padding:"80px 0"}}>Todo</div></div></NavLink>
+                            <NavLink to={"/game"}><div className="tohover" style={{backgroundColor:"#FCA5A5", width:"200px", height:"200px"}}><div style={{padding:"80px 0"}}>Game</div></div></NavLink>
+                            <NavLink to={"/todo"}><div className="tohover" style={{backgroundColor:"#BFDBFE", width:"200px", height:"200px", marginLeft:"20px"}}><div style={{padding:"80px 0"}}>Todo</div></div></NavLink>
                         </span>
                         <br />
                         <span style={{display:"flex"}}>
-                            <NavLink to={"/blog"}><div className="tohover" style={{backgroundColor:"lightblue", width:"200px", height:"200px"}}><div style={{padding:"80px 0"}}>Blog</div></div></NavLink>
-                            <NavLink to={"/translator"}><div className="tohover" style={{backgroundColor:"pink", width:"200px", height:"200px", marginLeft:"20px"}}><div style={{padding:"80px 0"}}>Translator</div></div></NavLink>
+                            <NavLink to={"/blog"}><div className="tohover" style={{backgroundColor:"#BFDBFE", width:"200px", height:"200px"}}><div style={{padding:"80px 0"}}>Blog</div></div></NavLink>
+                            <NavLink to={"/translator"}><div className="tohover" style={{backgroundColor:"#FCA5A5", width:"200px", height:"200px", marginLeft:"20px"}}><div style={{padding:"80px 0"}}>Translator</div></div></NavLink>
                         </span>
                     
                 </div>

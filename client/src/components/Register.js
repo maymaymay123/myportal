@@ -53,23 +53,23 @@ const Register = () => {
 
     return (
         <div className="registerpage">
-            <Link to="/login">Login</Link>
+            <button style={{float:"right",marginRight:"30px"}}><Link to="/login">Already have an account?</Link></button>
             <div className="">
                 <h4>Create New Account </h4>
             </div>
             <form action="" onSubmit={e=>{handleRegister(e)}}>
                 {msg}
-                <div className="">
-                    <label for="floatingName">Username</label>
-                    <input className="" id="floatingName" type="username" placeholder="username" value={username} onChange={e=>setUsername(e.target.value)}/>
+                <div className="registerpage">
+                    <label for="regname">Username: &nbsp; </label>
+                    <input className="" id="regname" type="username" placeholder="username" value={username} onChange={e=>setUsername(e.target.value)} style={{width:"300px",marginBottom:"5px",marginLeft:"26px"}}/>
                 </div>
                 <div className="">
-                    <label for="floatingEmail">Email Address</label>
-                    <input className="" id="floatingEmail" type="email" placeholder="email" value={email} onChange={e=>setEmail(e.target.value)}/>
+                    <label for="regemail">Email Address: &nbsp;</label>
+                    <input className="" id="regemail" type="email" placeholder="email" value={email} onChange={e=>setEmail(e.target.value)} style={{width:"300px",marginBottom:"5px"}}/>
                 </div>
                 <div className="">
-                    <label for="floatingPassword">Password</label>
-                    <input className="" id="floatingPassword" type="password" placeholder="password" value={password} onChange={e=>setPassword(e.target.value)}/>
+                    <label for="regpassword">Password: &nbsp;</label>
+                    <input className="" id="regpassword" type="password" placeholder="password" value={password} onChange={e=>setPassword(e.target.value)} style={{width:"300px",marginBottom:"5px",marginLeft:"31px"}}/>
                 </div>
                 <div className="">
                     <button className="" type="submit">Create Account</button>

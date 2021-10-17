@@ -19,7 +19,7 @@ const Login = () => {
             console.log('response login',response)
             if (response.data==='issue' || response.data==="err"){
                 const msg = (
-                    <div className="" role="alert">
+                    <div className="alert alert-danger">
                         <strong>Invalid Login</strong>
                     </div>
                 )
@@ -30,7 +30,6 @@ const Login = () => {
             setUsername('')
             setEmail('');
             setPassword('')
-            //document.getElementById('login').style.visibility = "hidden";
             window.location.href = "/dashboard"
 
         })
@@ -43,18 +42,19 @@ const Login = () => {
             <form id="login" action="" onSubmit={e=>handleLogin(e)} >
                 {msg}
                 <div className="">
-                    <label for="floatingEmail">Email Address</label>
-                    <input className="" id="floatingEmail" type="email" placeholder="email" value={email} onChange={e=>setEmail(e.target.value)}/>
+                    <label for="email">Email Address:&nbsp; </label>
+                    <input className="" id="email" type="email" placeholder="email" value={email} onChange={e=>setEmail(e.target.value)} style={{width: "300px", marginBottom:"5px"}}/>
                     
                 </div>
                 <div className="">
-                    <label for="">Password</label>
-                    <input className="" type="password" placeholder="password" value={password} onChange={e=>setPassword(e.target.value)}/>
+                    <label for="password">Password:&nbsp; </label>
+                    <input className="" id="password" type="password" placeholder="password" value={password} onChange={e=>setPassword(e.target.value)} style={{marginLeft:"32px", width:"300px", marginBottom:"5px"}}/>
                     
                 </div>
                 <div className="">
                     <button className="" type="submit">Log in</button>
                 </div>
+                <br />
                 <a href="./register" style={{backgroundColor:"white"}}>Create New Account</a>
             </form>
             <img id="pic" src="./flintstone.png" />

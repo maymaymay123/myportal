@@ -15,9 +15,9 @@ module.exports = [
     },
     {
         from: "en",
-        to: "es",
-        text: "girl",
-        translated: "nina",
+        to: "zh-cn",
+        text: "how are you",
+        translated: "你好吗",
         email: "test@test.com",
     }
 ]

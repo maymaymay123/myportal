@@ -33,32 +33,7 @@ function App() {
             setEmail(response.data.email)    
         })
     },[])
-    // // Define variables
-    // let x = -400;
-    // let direction = 1;
 
-    // // Function which moves "pic" element
-    // function hor(val) {
-    // // Move by specified value multiplied by direction
-    // x += val * direction; 
-
-    // if(x > 400){
-    //     x = 400;
-    // // Reverse direction
-    //     direction = -1;
-    // } else if(x < -400){
-    //     x = -400;
-    // // Reverse direction, once again
-    //     direction = 1;
-    // }
-    // // Move element
-    //document.getElementById("pic").style.left = x + "px";
-
-    // Continue loop
-    // setTimeout("hor("+val+")", 10);
-    // }
-
-    // hor(3);
 
     // let myAudio = document.querySelector("#music");
     // let isPlaying = false;
@@ -80,17 +55,16 @@ function App() {
         <div className=""> 
             <div style={{ backgroundImage: `url(${background})`, height: "1010px",backgroundSize: "cover", backgroundRepeat:"repeat-y"}}>
                 <Link to="/dashboard"><img src='/homeicon.png' width="50px" height="50px" float="left" style={{margin:"25px"}}/></Link>
-                <span style={{position:"absolute", marginLeft:"450px"}}><h1>Welcome to the myportal</h1></span>
-                <span style={{position:"absolute", margin:"40px", marginLeft:"450px"}}><h2>How are you today?</h2></span>
+                <span style={{position:"absolute", marginLeft:"450px", marginTop:"30px"}}><h1>Welcome to the myportal</h1></span>
                 <span style={{fontSize:"20px", color:"white", position:"absolute",marginTop:"25px", marginLeft: "1250px"}}>
                     {email && (<div>Hi, <b>{username} </b></div>)}
-                    <Logout />
+                    {email && (<Logout />)}
                 </span>
                 <hr style={{border:"white solid 3px"}} />
                 <br/>
                 
                 <UserContext.Provider value={{username, setUsername, email, setEmail}}>
-                    {username ? <Link to="/dashboard"></Link>:<Link to="/"></Link>}
+                    {email ? <Link to="/dashboard"></Link>:<Link to="/"></Link>}
                     <main>
                         <Switch>
                             <Route exact path='/'>

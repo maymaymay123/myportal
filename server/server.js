@@ -330,23 +330,12 @@ app.put("/highestscore/:email", async (req, res) => {
     }
 })
 
-////////////////////////////////////////////////
-//problems to solve
-// translator
-// app.post("/translator/add", async (req, res) => {
-//     try {
-//         const data = await TranslatorModel.create(req.body); 
-//         res.send({status: 'ok', msg: 'added'});
-//     } catch (error) {
-//         console.log({status: 'bad translator cannot add', msg: error.message});
-//     }
-// })
 
 // app.get('/translator', async (req,res)=>{
 //     translate('I speak Chinese', {to: 'zh-cn'}).
-//     then(respond => {
-//         console.log(respond);
-//         res.send(respond)
+//     then(response => {
+//         console.log(response);
+//         res.send(response)
 
 //         //=> "我说中文"
 //     }).catch(err => {
@@ -354,20 +343,15 @@ app.put("/highestscore/:email", async (req, res) => {
 //     })
 // })
 
-// app.get('/translator',(req,res) => {
-//     const data = {title:"return translated content",translated:""}
-//     console.log("can get here?")
-//     res.send(data)
-// })
   
-
+//https://www.npmjs.com/package/translate-google
 app.post('/translator', async (req,res) => {
     console.log(req.body.text)
     console.log(req.body.to)
-    translate(req.body.text, {to: req.body.to}).then(response => {
+    translate( req.body.text, {from: req.body.from, to: req.body.to}).then(response => {
     console.log("response server",response)
     console.log("translated content is: ",response)
-    const data = TranslatorModel.create({text:req.body.text, to:req.body.to, translated:response, email:req.body.email});
+    const data = TranslatorModel.create({from: req.body.from, text:req.body.text, to:req.body.to, translated:response, email:req.body.email});
     console.log("final date is: ",data)
 
     res.send({title:"return translated content",translated: response})
@@ -375,68 +359,6 @@ app.post('/translator', async (req,res) => {
         console.error(err);
     });
   
-})
-
-// app.post('/pokemon',(req,res)=>{
-//     pokemon.push({
-//         name: req.body.name,
-//         image: req.body.img,
-//         type: [req.body.type],
-//         stats: {
-//         hp: req.body.hp,
-//         attack: req.body.attack,
-//         defense: req.body.defense,
-//         spattack: req.body.spattack,
-//         spdefense: req.body.spdefense,
-//         speed: req.body.speed
-//         }
-//     })
-//     res.redirect('/pokemon')
-// })
-
-// app.post("/todo/add", async (req, res) => {
-//     const data = await TodoModel.create(req.body);
-//     try {
-//         await data.save()
-//         res.send({status: 'ok', msg: 'added'});
-//     } catch (error) {
-//         console.log({status: 'bad', msg: error.message});
-//     }
-// })
-
-// app.get('/translator',async (req,res) => {
-//     //res.render('speechtranslator.ejs',{title:"Text Translator",translated:""})
-//     res.send({title:"Text Translator",translated:""})
-// })
-  
-  
-// app.post('/translator',async (req,res) => {
-//     console.log("print the text",req.body.text)
-//     translate(req.body.text, {to: req.body.language}).then(response => {
-//     res.send({title:"Text Translator",translated:response.text})
-//     }).catch(error => {
-//         console.log({status: 'bad cannot translate', msg: error.message});
-//     });
-  
-// })
-
-
-
-app.get('/speechtranslator',(req,res) => {
-  res.render('speechtranslator.ejs',{title:"Text Translator",translated:""})
-})
-
-
-app.post('/speechtranslator',(req,res) => {
-
-  console.log(req.body.speech)
-
-  translate(req.body.speech, {to: req.body.language}).then(response => {
-    res.render('speechtranslator.ejs',{title:"Text Translator",translated:response.text})
-}).catch(err => {
-    console.error(err);
-});
-
 })
 
 

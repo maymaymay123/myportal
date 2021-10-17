@@ -8,7 +8,7 @@ const Blog = (props) => {
 
     const [data, setData] = useState([]);
     const uri = "http://localhost:5000/"
-    //const username = props.username;
+    const email = props.email;
 
     useEffect(()=>{
         console.log("hello")
@@ -45,6 +45,7 @@ const Blog = (props) => {
         })
     }
 
+    if (email){
     return (
         <div>   
             <div className="" style={{textAlign:"center", backgroundColor: "white", width:"1600px"}}>
@@ -72,7 +73,9 @@ const Blog = (props) => {
                     })}
             </div>
         </div>
-    )
+    )} else {
+        return (<button style={{marginLeft:"700px"}}><Link to="/login">Please Log in</Link></button>)
+    }
 }
 
 export default Blog
