@@ -14,6 +14,7 @@
 .wholecircle{
   display: inline-block;
 
+
 }
 .frame {
   font-size: 30px;
@@ -23,6 +24,7 @@
 .cardWrapper {
   width: 400px;
   border-radius: 50%;
+
 }
 
 .startButton {

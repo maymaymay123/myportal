@@ -2,14 +2,14 @@ import "../App.css";
 import React, { useState, useEffect } from "react";
 import ColorCard from "../components/ColorCard";
 import timeout from "../components/util";
-import {Link} from 'react-router-dom';
 import axios from 'axios';
+import Login from '../components/Login'
 
 function Simonsays(props) {
 
 
     const uri = "http://localhost:5000/"
-    const [highestscore,setHighestscore] = useState();
+    const [highestscore,setHighestscore] = useState(0);
     const [data, setData] = useState([])
     const email = props.email;
 
@@ -23,14 +23,27 @@ function Simonsays(props) {
         .then(response =>{
             console.log('received data');
             console.log('dataaaaa',response.data); 
+            if (response.data.length === 0){
+                const data = {
+                    highestscore,
+                    email
+                };
+                console.log("checkkkkk")
+                axios.post((uri + "highestscore/add"),data)
+                .then(response =>{
+                    console.log('posted new user', response);
+                })
+                .catch((error)=> {
+                    console.log({status: 'bad cant post', msg: error.message})
+                })
+            }
             setData(response.data)
-            console.log('score',response.data[0].highestscore);
-            let scorenow = response.data[0].highestscore;
-            setHighestscore(scorenow);
-            console.log("check score here", highestscore) //print undefined
+            console.log("check score data",response.data)
+            setHighestscore(response.data[0].highestscore)
+            console.log("check highest score", highestscore)
         })
         .catch((error)=> {
-            console.log({status: 'bad', msg: error.message})
+            console.log({status: 'bad cant get db', msg: error.message})
         })
     }
 
@@ -50,7 +63,7 @@ function Simonsays(props) {
     const [game, setGame] = useState(startPlay);
     const [flashColor, setFlashColor] = useState("");
 
-    function startHandle() {
+    function startHandle(e) {
         setIsOn(true);
     }
 
@@ -130,16 +143,17 @@ function Simonsays(props) {
  
     function closeHandle(e) {
         e.preventDefault();
+        console.log("gm scr",game.score)
         if (game.score > highestscore) {
             console.log("check game.score here", game.score)
             setHighestscore(game.score);
             console.log('highestScore',highestscore)
             console.log("check1 ")
-        }
+        
         setIsOn(false);
-        let score = game.score;
         const data = {
-            highestscore:score,
+            highestscore:game.score,
+            email,
         }
     
         console.log("check2 ")
@@ -148,19 +162,22 @@ function Simonsays(props) {
         .then(response =>{
             console.log('received edited data');
             console.log('see the new data',response.data);
-            console.log("THIS new data",data);
+            console.log("latest new data",data);
             //window.location.href = "/game";
         })
         .catch((error)=> {
             console.log({status: 'bad cant submit', msg: error.message})
         })
+        } else {
+            setIsOn(false)
+        } 
     }
 
     if (email) {
     return (
-        <div className="App">
-            <div className="highestscore">Personal Highest Score : {highestscore && highestscore}</div>
-            <div className="wholecircle">
+        <div className="">
+            <div className="highestscore">Personal Highest Score : {highestscore}</div>
+            <div className="wholecircle" style={{marginTop:"30px"}}>
                 <div className="frame">
                     <div className="cardWrapper">
                         {colorList &&
@@ -194,7 +211,7 @@ function Simonsays(props) {
         </div>
     )
     } else {
-        return (<button style={{marginLeft:"700px"}}><Link to="/login">Please Log in</Link></button>)
+        return (<Login />)
     }
 }
 

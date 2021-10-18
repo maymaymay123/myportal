@@ -1,8 +1,6 @@
 import React, {useState} from 'react'
-import UserContext from '../components/UserContext';
 import axios from 'axios';
-import {Link, NavLink} from "react-router-dom"
-import styles from "../styles.css"
+import {NavLink} from "react-router-dom"
 
 const Logout = (props) => {
 
@@ -17,7 +15,6 @@ const Logout = (props) => {
         axios.post('http://localhost:5000/logout',{}, {withCredentials:true})
             .then(()=>setEmail(""))
             .then(()=>setUsername(""))
-            //document.getElementById('logout').style.visibility = "hidden";
             window.location.href = "/"
         
     }

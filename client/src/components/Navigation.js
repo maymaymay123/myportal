@@ -12,8 +12,6 @@ const Navbar = (props) => {
     const username = props.username;
     const setEmail = props.setEmail;
     const setUsername = props.setUsername;
-    // const [username, setUsername] = useState("")
-    // const [email, setEmail] = useState("")
 
     function handleLogout(e){
         axios.post('http://localhost:5000/logout',{}, {withCredentials:true})

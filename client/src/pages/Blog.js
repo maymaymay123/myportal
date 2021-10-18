@@ -1,8 +1,7 @@
 import React, {useState, useEffect} from "react";
 import {Link} from 'react-router-dom';
 import axios from 'axios';
-import Logout from '../components/Logout'
-import styles from '../styles.css'
+import Login from '../components/Login'
 
 const Blog = (props) => {
 
@@ -47,34 +46,35 @@ const Blog = (props) => {
 
     if (email){
     return (
-        <div>   
-            <div className="" style={{textAlign:"center", backgroundColor: "white", width:"1600px"}}>
-                <Link to="../blog">Blog Page</Link>
+        <div style={{ backgroundColor:"#FEF3C7", height: "auto",backgroundSize: "cover", backgroundRepeat:"repeat-x"}}>   
+            <div className="" >
+                <div style={{textAlign:"center",fontSize:"20px"}}>
+                    <button ><Link className="" to="/blog/add">Add New Post</Link></button>
+                </div>
                 <br/>
-                <Link className="" to="/blog/add">Add Post</Link>
-
                     {data.map((element, index) => {
                         let currentDate = new Date(element.date);
                         const isoDate = currentDate.toISOString().split("T")[0];
                         return (
-                            <div key={element._id} >
+                            <div key={element._id} style={{textAlign:"center", backgroundColor: "#FFFBEB", width:"1300px",marginLeft:"130px", height:"auto"}} >
                                 <h1 className="titledeco" style={{textDecoration:"none", color:"black"}}><Link to={`blog/show/${element._id}`}>{element.title}</Link></h1>
-                                <div>{isoDate}</div>
+                                <div style={{color:"grey"}}><i>{isoDate}</i></div>
                                 <div className="" >
-                                    {element.img ? <img src={element.img} max-width="600px" height="400px" className=""/> : <img style={{visibility:"hidden"}}/>}
+                                    {element.img ? <img src={element.img} max-width="500px" height="300px" className=""/> : <img style={{visibility:"hidden"}}/>}
                                 </div>
-                                <p style={{fontSize:"25px"}}>{element.post}</p>
-                                <div><Link to={`blog/edit/${element._id}`}><i className="" id={element._id}>Edit</i></Link></div>
-                                <div><i className="" href="/blog" id={element._id} onClick={handleDelete}>Delete</i></div>
+                                <p style={{fontSize:"20px"}}>{element.post}</p>
+                                <button><Link to={`blog/edit/${element._id}`}><i className="" id={element._id}>Edit</i></Link></button>
+                                <button><i className="" href="/blog" id={element._id} onClick={handleDelete}>Delete</i></button>
                                 <br/>
                                 <hr />
                             </div>
                         )
                     })}
+                    <br/>
             </div>
         </div>
     )} else {
-        return (<button style={{marginLeft:"700px"}}><Link to="/login">Please Log in</Link></button>)
+        return (<Login />)
     }
 }
 

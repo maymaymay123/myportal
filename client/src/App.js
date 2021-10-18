@@ -17,8 +17,7 @@ import axios from 'axios';
 import ShowPost from './pages/ShowPost'
 import AddPost from './pages/AddPost'
 import EditPost from './pages/EditPost'
-import ShowTodo from './pages/ShowTodo'
-import EditTodo from './pages/EditTodo'
+import Music from './components/Music'
 
 function App() {
 
@@ -52,9 +51,10 @@ function App() {
 
     return (
         
-        <div className=""> 
-            <div style={{ backgroundImage: `url(${background})`, height: "1010px",backgroundSize: "cover", backgroundRepeat:"repeat-y"}}>
-                <Link to="/dashboard"><img src='/homeicon.png' width="50px" height="50px" float="left" style={{margin:"25px"}}/></Link>
+        <div className="" > 
+            <div style={{ backgroundImage: `url(${background})`, height: "1010px",backgroundSize: "cover", backgroundRepeat:"repeat-x"}}>
+                <Link to="/dashboard"><img src='/homeicon.png' width="50px" height="50px" float="left" style={{margin:"25px",marginLeft:"40px"}}/></Link>
+                <Music />
                 <span style={{position:"absolute", marginLeft:"450px", marginTop:"30px"}}><h1>Welcome to the myportal</h1></span>
                 <span style={{fontSize:"20px", color:"white", position:"absolute",marginTop:"25px", marginLeft: "1250px"}}>
                     {email && (<div>Hi, <b>{username} </b></div>)}
@@ -68,10 +68,10 @@ function App() {
                     <main>
                         <Switch>
                             <Route exact path='/'>
-                                <Login />
+                                {email ? <Dashboard/>:<Login />}
                             </Route>
                             <Route exact path='/home'>
-                                <Login />
+                                {email ? <Dashboard/>: <Login />}
                             </Route>
                             <Route exact path='/dashboard'><Dashboard setEmail={setEmail} setUsername={setUsername} email={email} username={username}/> </Route>
                             <Route exact path='/game'><Simonsays setEmail={setEmail} setUsername={setUsername} email={email} username={username}/> </Route>
@@ -88,17 +88,10 @@ function App() {
                                 <EditPost username={username} email={email}/>
                             </Route>
 
-                            <Route path="/todo/show/:id">
-                                <ShowTodo username={username} email={email}/>
-                            </Route>
-                            <Route path="/todo/edit/:id">
-                                <EditTodo username={username} email={email}/>
-                            </Route>
-
 
                             <Route exact path={'/login'} component={Login} />
                             <Route exact path={'/register'} component={Register} />
-                            <Route exact path={'/logout'} component={Logout} />
+                            <Route exact path={'/logout'} />
                         </Switch>           
                     </main>
                 </UserContext.Provider>

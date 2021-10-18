@@ -53,22 +53,22 @@ const Register = () => {
 
     return (
         <div className="registerpage">
-            <button style={{float:"right",marginRight:"30px"}}><Link to="/login">Already have an account?</Link></button>
+            <button style={{float:"right",marginRight:"80px"}}><Link to="/login">Already have an account?</Link></button>
             <div className="">
                 <h4>Create New Account </h4>
             </div>
             <form action="" onSubmit={e=>{handleRegister(e)}}>
                 {msg}
                 <div className="registerpage">
-                    <label for="regname">Username: &nbsp; </label>
+                    <label htmlFor="regname">Username: &nbsp; </label>
                     <input className="" id="regname" type="username" placeholder="username" value={username} onChange={e=>setUsername(e.target.value)} style={{width:"300px",marginBottom:"5px",marginLeft:"26px"}}/>
                 </div>
                 <div className="">
-                    <label for="regemail">Email Address: &nbsp;</label>
+                    <label htmlFor="regemail">Email Address: &nbsp;</label>
                     <input className="" id="regemail" type="email" placeholder="email" value={email} onChange={e=>setEmail(e.target.value)} style={{width:"300px",marginBottom:"5px"}}/>
                 </div>
                 <div className="">
-                    <label for="regpassword">Password: &nbsp;</label>
+                    <label htmlFor="regpassword">Password: &nbsp;</label>
                     <input className="" id="regpassword" type="password" placeholder="password" value={password} onChange={e=>setPassword(e.target.value)} style={{width:"300px",marginBottom:"5px",marginLeft:"31px"}}/>
                 </div>
                 <div className="">

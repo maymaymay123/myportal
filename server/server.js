@@ -13,8 +13,6 @@ const secret = process.env.SECRET;
 
 
 const connectDB = require('./models/db')
-// const mongoSessions = process.env.SESSION
-// connectDB(mongoSessions);
 const mongo = process.env.MONGODBURI
 connectDB(mongo);
 
@@ -27,9 +25,9 @@ app.use(cookieParser())
 
 
 
-const bodyParser = require("body-parser");
-app.use(bodyParser.urlencoded({ extended: false }));
-app.use(bodyParser.json());
+// const bodyParser = require("body-parser");
+// app.use(bodyParser.urlencoded({ extended: false }));
+// app.use(bodyParser.json());
 
 
 
@@ -165,8 +163,9 @@ app.get("/translator/:email", async (req, res) => {
 app.get("/highestscore/:email", async (req, res) => {
     try {
         const data = await ScoreModel.find({email: req.params.email}); 
+        console.log("email",req.params.email)
         res.send(data);
-        console.log({status: 'ok', msg: 'get'});
+        console.log({status: 'ok', msg: 'game email'});
     } catch (error) {
         console.log({status: 'bad', msg: error.message});
     }
@@ -221,18 +220,6 @@ app.get("/blogseed", async (req, res) => {
 })
 
 ////////////////////////////////////////////////////////////////////////////////////////
-
-// // todo maybe delete
-// app.get('/todo/show/:id', async (req, res) => {
-//     console.log('getting one')
-//     try {
-//         const data = await TodoModel.findOne({_id: req.params.id});
-//         res.send(data);
-//         console.log({status: 'ok', msg: 'get one'});
-//     } catch (error) {
-//         console.log({status: 'bad', msg: error.message});
-//     }
-// })
 
 // todo 
 app.post("/todo/add", async (req, res) => {
@@ -317,14 +304,24 @@ app.delete("/blog/delete/:id", async (req, res) => {
     }
 })
 
+// score 
+app.post("/highestscore/add", async (req, res) => {
+    const data = await ScoreModel.create(req.body);
+    try {
+        await data.save()
+        res.send({status: 'ok', msg: 'added'});
+    } catch (error) {
+        console.log({status: 'bad', msg: error.message});
+    }
+})
 
 // score
 app.put("/highestscore/:email", async (req, res) => {
-    try {
+    try { 
         await ScoreModel.updateOne({email: req.params.email}, req.body); 
-        const data = await ScoreModel.findOne({_id: req.params.id}); 
+        const data = await ScoreModel.findOne({email: req.params.email}); 
         res.send(data);
-        console.log({status: 'oksssss', msg: 'edited'});
+        console.log({status: 'oksssss', msg: 'score edited'});
     } catch (error) {
         console.log({status: 'bad server score', msg: error.message});
     }
@@ -352,7 +349,7 @@ app.post('/translator', async (req,res) => {
     console.log("response server",response)
     console.log("translated content is: ",response)
     const data = TranslatorModel.create({from: req.body.from, text:req.body.text, to:req.body.to, translated:response, email:req.body.email});
-    console.log("final date is: ",data)
+    console.log("final data is: ",data)
 
     res.send({title:"return translated content",translated: response})
     }).catch(err => {

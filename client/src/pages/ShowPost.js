@@ -47,22 +47,28 @@ const ShowPost = () => {
 
     return (
         <div className="">
-            <div className="" style={{textAlign:"center", backgroundColor: "white", width:"1570px",height:"1000px"}}>
-                <Link to="../blog">Blog Page</Link>
+            <div className="" style={{textAlign:"center", backgroundColor: "#FEF3C7", width:"1590px",height:"1000px"}}>
+                <br/>
                 <div>
-                    <h3>{data.title}</h3>
+                    <button style={{float:"left", marginLeft:"30px",fontSize:"20px"}}><Link to="/blog">Go to Blog Page</Link></button>
+                </div> 
+                <br/>
+                <br/>
+                <div>
+                    <h1 style={{textDecoration:"none", color:"black"}}>{data.title}</h1>
                 </div> 
                 <div>    
-                    <p>{date}</p>
+                    <p style={{color:"grey"}}><i>{date}</i></p>
                 </div> 
                 <div className="" >
-                    {data.img ? <img src={data.img} width="400px" height="400px" className=""/> : <img src="https://via.placeholder.com/10x10.png?text=No+Image+Selected" style={{visibility:"hidden"}}/>}
-                </div>     
-                <div>
-                    <h3>{data.post}</h3>
+                    {data.img ? <img src={data.img} width="500px" height="300px" className=""/> : <img src="https://via.placeholder.com/10x10.png?text=No+Image+Selected" style={{visibility:"hidden"}}/>}
                 </div> 
-                <Link to={`/blog/edit/${data._id}`} className="" id={data._id}>Edit</Link>
-                <a className="" onClick={handleDelete} id={data._id}>Remove</a>
+                <br/>    
+                <div>
+                    <p>{data.post}</p>
+                </div> 
+                <button><Link to={`/blog/edit/${data._id}`} className="" id={data._id}>Edit</Link></button>
+                <button><div className="" onClick={handleDelete} id={data._id}>Delete</div></button>
                 </div>
 
         </div>

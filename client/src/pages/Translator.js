@@ -1,6 +1,7 @@
 import React, {useState, useEffect} from "react";
 import {Link} from 'react-router-dom';
 import axios from 'axios';
+import Login from '../components/Login'
 
 
 const Translator = (props) => {
@@ -97,7 +98,7 @@ const Translator = (props) => {
     if (email) {
     return (
         <div>
-            <h1 className="">
+            <h1 className="" style={{textDecoration:"none", color:"black"}}>
                 Language Translator
             </h1>
             <div className="" style={{display:"inline-block", width:"900px", height:"900px", margin:"20px"}}>
@@ -105,8 +106,8 @@ const Translator = (props) => {
                     <div style={{color:"red",fontSize:"23px"}}>{prompt}</div>
                     <form onSubmit={handleSubmit} >
                     <div class="form-group">
-                        <label for="fromselect" style={{color:"white"}}>Original Language:</label>
-                        <select class="form-control" name="language" id="fromselect" onChange={(e)=> setFrom(e.target.value)}>
+                        <label htmlFor="fromselect" style={{color:"white"}}>Original Language:</label>
+                        <select class="form-control" name="language" style={{backgroundColor: "#FFFBEB"}} id="fromselect" onChange={(e)=> setFrom(e.target.value)}>
                             <option value="af">Afrikaans</option>
                             <option value="sq">Albanian</option>
                             <option value="ar">Arabic</option>
@@ -154,14 +155,14 @@ const Translator = (props) => {
                         </select>
                     </div>
                         <div class="form-group">
-                            <label for="text" style={{color:"white"}}>Write Text:</label>
-                            <textarea class="form-control" name="text" required id="text" onChange={(e)=> setText(e.target.value)} value={text} cols="20" rows="8" placeholder="text to translate"></textarea>
+                            <label htmlFor="text" style={{color:"white"}}>Write Text:</label>
+                            <textarea class="form-control" style={{backgroundColor: "#FFFBEB"}} name="text" required id="text" onChange={(e)=> setText(e.target.value)} value={text} cols="20" rows="8" placeholder="text to translate"></textarea>
                         </div>
                 
                         <div class="form-group">
                             <br/>
-                            <label for="fromselect">Select Language to Translate:</label>
-                            <select class="form-control" name="language" id="fromselect" onChange={(e)=> setTo(e.target.value)}>
+                            <label htmlFor="fromselect">Select Language to Translate:</label>
+                            <select class="form-control" style={{backgroundColor: "#FFFBEB"}} name="language" id="fromselect" onChange={(e)=> setTo(e.target.value)}>
                                 <option value="af" selected>Afrikaans</option>
                                 <option value="sq">Albanian</option>
                                 <option value="ar">Arabic</option>
@@ -215,8 +216,8 @@ const Translator = (props) => {
                         </div>
                         <div class="form-group">
                                 <div>
-                                    <label for="translated">Translated Text:</label>
-                                    <div className="form-control" id="translated" style={{height:"auto"}}>
+                                    <label htmlFor="translated">Translated Text:</label>
+                                    <div className="form-control" id="translated" style={{backgroundColor: "#FFFBEB", height:"auto"}}>
                                         {translated}
                                     </div>
                                 </div>
@@ -224,8 +225,8 @@ const Translator = (props) => {
                     </form>
                 </div>
             </div> 
-            <span style={{ display:"inline-block", verticalAlign:"top", backgroundColor:"white", margin:"50px", width:"500px", height:"auto"}}>
-                <h1>History: </h1>
+            <span style={{ display:"inline-block", verticalAlign:"top", backgroundColor:"#FFFBEB", margin:"50px", width:"500px", height:"auto"}}>
+                <h1 style={{textDecoration:"none", color:"black"}}>History: </h1>
                 {data.slice(0,7).map((element, index) => {
                     return (
                         <div key={element._id} style={{textAlign:"center"}}>
@@ -238,7 +239,7 @@ const Translator = (props) => {
         </div>
     )
     } else {
-        return (<button style={{marginLeft:"700px"}}><Link to="/login">Please Log in</Link></button>)
+        return (<Login />)
     }
 }
 

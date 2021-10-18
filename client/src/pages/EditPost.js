@@ -72,11 +72,11 @@ const EditPost = (props) => {
         }
         if (!(title && post)){
             setPrompt(
-                <alert onClose={() => setPrompt(false)}>
+                <div onClose={() => setPrompt(false)}>
                     Please enter all fields!
-                </alert>
+                </div>
                 )
-        } 
+        } else{
         axios.put((uri + `blog/edit/${id}`), data)
         .then(response =>{
             console.log('received edited data');
@@ -87,32 +87,41 @@ const EditPost = (props) => {
         .catch((error)=> {
             console.log({status: 'bad', msg: error.message})
         })
+        }
     }
 
     console.log();
 
     return (
-        <div className="" style={{textAlign:"center", backgroundColor: "white", width:"1570px", height:"1000px"}}>
-            <Link to="/blog">Blog Page</Link>
+        <div className="" style={{textAlign:"center", backgroundColor: "#FEF3C7", width:"1590px", height:"1000px"}}>
+            <br/>
+            <div>
+                <button style={{float:"left", marginLeft:"30px",fontSize:"20px"}}><Link to="/blog">Go to Blog Page</Link></button>
+                <br />
+            </div>
+            {prompt}
             <form>
                 <div className="">  
-                    <label for="changetitle">Title: </label>  
-                    <input className="" id="changetitle" onChange={(e)=> setTitle(e.target.value)} value={title} type="text" placeholder="Title"/>
+                    <br/>
+                    <label htmlFor="changetitle">Title: &nbsp;</label>  
+                    <input className="" id="changetitle" onChange={(e)=> setTitle(e.target.value)} value={title} type="text" placeholder="Title" style={{width:"900px"}} required/>
                     
                 </div>
+                <br/>
                 <div className="">   
-                    <div><label for="changepost">Post: </label></div>      
-                    <textarea className="" id="changepost" onChange={(e)=> setPost(e.target.value)} value={post} cols="180" rows="10" placeholder="Post"/> 
+                    <div><label htmlFor="changepost">Post: </label></div>      
+                    <textarea className="" id="changepost" onChange={(e)=> setPost(e.target.value)} value={post} cols="180" rows="10" placeholder="Post" required/> 
                </div>
                <div>Date: {date}</div>
-               <div className="">    
+               <br/>
+               <button className="" onClick={handleEdit}>Update Post</button>
+               <div className="">  
+                    <br/>  
                     <input className="" id="fileUpload" onChange={handleImage} type="file" placeholder="Image" accept=".jpeg, .png, .jpg"/>
                 </div>
                <div>
-               {img ? <img src={img} width="400px" height="400px" /> : <img src="https://via.placeholder.com/10x10.png?text=No+Image+Selected" style={{visibility:"hidden"}}/>}
+               {img ? <img src={img} width="500px" height="300px" /> : <img src="https://via.placeholder.com/10x10.png?text=No+Image+Selected" style={{visibility:"hidden"}}/>}
                </div>
-                {prompt}
-                <button className="" onClick={handleEdit}>Update Post</button>
             </form>
         </div>
     )

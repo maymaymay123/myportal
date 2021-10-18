@@ -64,31 +64,36 @@ const AddPost = (props) => {
         })
     }
     return (
-        <div className="" style={{textAlign:"center", backgroundColor: "white", width:"1590px", height:"1000px" }}>
-            <Link to="../blog">Blog Page</Link>
-
+        <div className="" style={{textAlign:"center", backgroundColor: "#FEF3C7", width:"1590px", height:"auto" }}>
+            <br/>
+            <button style={{float:"left", marginLeft:"30px",fontSize:"20px"}}><Link to="../blog">Back to Blog Page</Link></button>
+            <br/>
             {prompt} 
             <form onSubmit={handleSubmit}>                   
                     <div className="">  
-                        <label for="inputtitle">Title: </label>  
-                        <input className="" id="inputtitle" onChange={(e)=> setTitle(e.target.value)} value={title} type="text" placeholder="Title"/>
-                        
+                        <br/>
+                        <label hmtlFor="inputtitle">Title:&nbsp; </label>  
+                        <input className="" id="inputtitle" onChange={(e)=> setTitle(e.target.value)} value={title} type="text" placeholder="Title" style={{width:"900px"}}/>
                     </div> 
+                    <br/>
                     <div className="">  
-                        <div><label for="inputpost">Post: </label></div>
+                        <div><label htmlFor="inputpost">Post: </label></div>
                         <textarea className="" id="inputpost" onChange={(e)=> setPost(e.target.value)} value={post} cols="180" rows="10" placeholder="Post"/>
                     </div>
                     <div className="">  
-                        Date: {date}
+                        Today's Date: {date}
                     </div>
-                    <div className="">    
+                    <br/>
+                    <button className="" onClick={handleSubmit} href="../blog" >Submit New Post</button>
+                    <br/>
+                    <br/>
+                    <div className="" style={{marginLeft:"70px"}}>    
                         <input className="" id="fileUpload" onChange={handleImage} type="file" placeholder="Image" accept=".jpeg, .png, .jpg"/>
                     </div>
-                    {img ? <img src={img} className="" width="400px" height="400px"/> : <img className="" src="https://via.placeholder.com/10x10.png?text=No+Image+Selected" style={{visibility:"hidden"}}/>}
+                    {img ? <img src={img} className="" width="500px" height="300px"/> : <img className="" src="https://via.placeholder.com/10x10.png?text=No+Image+Selected" style={{visibility:"hidden"}}/>}
                 <br/>
                 <br/>
-        
-                <button className="" onClick={handleSubmit} href="../blog" >Add Post</button>
+    
             </form>
         </div>
     )

@@ -1,6 +1,6 @@
 import React, {useState, useEffect} from "react";
-import {Link, useParams} from 'react-router-dom';
 import axios from 'axios';
+import Login from '../components/Login'
 
 const Todo = (props) => {
 
@@ -9,7 +9,6 @@ const Todo = (props) => {
     const [priority, setPriority] = useState('Low');
     const [prompt, setPrompt] = useState('');
     const [data,setData] = useState([])
-    //const {id} = useParams();
     const email = props.email;
     const [buttonstate, setButtonstate] = useState('create')
     const [id, setId] = useState()
@@ -26,6 +25,7 @@ const Todo = (props) => {
         axios.get((uri + `todo/${props.email}`))
         .then(response =>{
             console.log('received data');
+            console.log('ss',response)
             setData(response.data)
             console.log("datatodo",data)
 
@@ -126,18 +126,23 @@ const Todo = (props) => {
     if (email){
     if (buttonstate==='create'){
     return (
-        <div className="center" style={{textAlign:"center", backgroundColor: "white", width:"1600px", height:"900px"}}>
-        <div className="" >
-            <h5>You have <span className="">{data.length}</span> todo(s)!</h5>
+        <div style={{backgroundColor:"#FEF3C7"}}>
+        <div float="left">
+            <span style={{backgroundColor:"#EF4444"}}> &nbsp; High &nbsp;</span>
+            <span style={{backgroundColor:"#FBBF24"}}> &nbsp; Medium &nbsp; </span>
+            <span style={{backgroundColor:"#10B981"}}> &nbsp; Low &nbsp;</span>
+        </div>
+        <div className="" style={{textAlign:"center"}} >
+            <h5>You have {data.length} todo(s)!</h5>
         </div>
         {prompt}
-            <form onSubmit={handleSubmit} >
+            <form onSubmit={handleSubmit} style={{textAlign:"center"}}>
             <div className="">    
-                <label for="inputtodo">Todo: </label>
-                <input className="" id="inputtodo" onChange={(e)=> setTodo(e.target.value)} value={todo} type="text" placeholder="Todo"/>
+                <label hmtlFor="inputtodo">Todo:&nbsp; </label>
+                <input className="" id="inputtodo" onChange={(e)=> setTodo(e.target.value)} value={todo} type="text" placeholder="Todo" style={{width:"700px"}}/>
             </div>
             <div className=""> 
-                <label for="floatingSelect">Priority: </label>   
+                <label htmlFor="floatingSelect">Priority:&nbsp; </label>   
                 <select className="" id="floatingSelect" onChange={(e)=> setPriority(e.target.value)}>
                     <option value="Low">Low</option>
                     <option value="Medium">Medium</option>
@@ -153,48 +158,56 @@ const Todo = (props) => {
                 let color;
                 let priority;
                 if (element.priority === 'High'){
-                    color = "red"; 
+                    color = "#EF4444"; 
                 } else if (element.priority === "Medium") {
-                    color = "yellow"
-                } 
+                    color = "#FBBF24"
+                } else {
+                    color ="#10B981"
+                }
                 let decoration;
                 if (element.completed === true){
                     decoration = "line-through"
                 }
                 return (
-                        <div id={element._id}>
+                        <div className="" id={element._id} style={{backgroundColor:"#FFFBEB", textAlign:"center", width:"700px", marginLeft:"450px", height:"auto"}}>
                             <div scope="row">{index + 1}</div>
-                            <div style={{backgroundColor: color, textDecoration:decoration, overflow:"auto"}} onClick={()=> clickTitle(element)}>{element.todo}</div>
-                            <div> Priority: {element.priority}</div>
-                            <div><i className="" href="/todo" id={element._id} onClick={handleDelete}>Delete</i></div>
+                            <div style={{backgroundColor: color, textDecoration:decoration}} onClick={()=> clickTitle(element)}>{element.todo}</div>
+                            <br/>
+                            <button><i className="" href="/todo" id={element._id} onClick={handleDelete}>Delete</i></button>
+                            <br/>
                             <br/>
                         </div>
                 )
 
             })}
-
+            <br/>
         </div>
         )
     }
     else if (buttonstate==='edit'){
         return (
-            <div className="center" style={{textAlign:"center", backgroundColor: "white", width:"1600px", height:"900px"}}>
-            <div className="" >
-                <h5>You have <span className="">{data.length}</span> todo(s)!</h5>
+            <div className="" style={{backgroundColor:"#FEF3C7"}}>
+            <div float="left">
+                <span style={{backgroundColor:"#EF4444"}}> &nbsp; High &nbsp;</span>
+                <span style={{backgroundColor:"#FBBF24"}}> &nbsp; Medium &nbsp; </span>
+                <span style={{backgroundColor:"#10B981"}}> &nbsp; Low &nbsp;</span>
+            </div>
+            <div className="" style={{textAlign:"center"}}>
+                <h5>You have {data.length} todo(s)!</h5>
             </div>
             {prompt}
-                <form >
+                <form style={{textAlign:"center"}}>
                 <div className="">    
-                    <label for="changetodo">Todo: </label>
-                    <input className="" id="changetodo" onChange={(e)=> setTodo(e.target.value)} value={todo} type="text" placeholder="Todo"/>
+                    <label htmlFor="changetodo">Todo:&nbsp; </label>
+                    <input className="" id="changetodo" onChange={(e)=> setTodo(e.target.value)} value={todo} type="text" placeholder="Todo" style={{width:"700px"}}/>
                 </div>
                 <div className="">    
-                    <label for="changecompleted">Completed? </label>  
+                    <label htmlFor="changecompleted">Completed?&nbsp; </label>  
                     <input className="" id="changecompleted" onChange={(e)=> setCompleted(true)} value={completed} type="checkbox" />
                 </div> 
 
                 <div className=""> 
-                    <label for="changeSelect">Priority: </label>   
+                    <label htmlFor="changeSelect">Priority:&nbsp; </label>   
                     <select className="" id="changeSelect" onChange={(e)=> setPriority(e.target.value)}>
                         <option value="Low">Low</option>
                         <option value="Medium">Medium</option>
@@ -211,33 +224,34 @@ const Todo = (props) => {
                     let color;
                     let priority;
                     if (element.priority === 'High'){
-                        color = "red"; 
+                        color = "#EF4444"; 
                     } else if (element.priority === "Medium") {
-                        color = "yellow"
-                    } 
+                        color = "#FBBF24"
+                    } else {
+                        color ="#10B981"
+                    }
                     let decoration;
                     if (element.completed === true){
                         decoration = "line-through"
                     }
                     return (
-                            <div id={element._id}>
+                            <div id={element._id} style={{backgroundColor:"#FFFBEB", textAlign:"center", width:"700px", marginLeft:"450px"}}>
                                 <div scope="row">{index + 1}</div>
-                                <div style={{backgroundColor: color, textDecoration:decoration}} onClick={()=> clickTitle(element)}>{element.todo}</div>
-                                <div> Priority: {element.priority}</div>
-                                <div><i className="" href="/todo" id={element._id} onClick={handleDelete}>Delete</i></div>
+                                <span><div style={{backgroundColor: color, textDecoration:decoration}} onClick={()=> clickTitle(element)}>{element.todo}</div></span>
+                                <br/>
+                                <span><button><i className="" href="/todo" id={element._id} onClick={handleDelete}>Delete</i></button></span>
+                                <br/>
                                 <br/>
                             </div>
                     )
     
                 })}
-    
+                <br/>
             </div>
             )
     }} else {
-        return (<button style={{marginLeft:"700px"}}><Link to="/login">Please Log in</Link></button>)
+        return (<Login />)
     }
 }
 
 export default Todo
-
-//<div><Link to={`todo/edit/${element._id}`}><i className="" id={element._id}>Edit</i></Link></div>

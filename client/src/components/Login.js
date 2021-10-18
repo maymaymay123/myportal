@@ -4,7 +4,7 @@ import {Link} from "react-router-dom"
 import Features from './Features'
 import styles from '../styles.css'
 
-const Login = () => {
+const Login = (props) => {
     const [username, setUsername] = useState("")
     const [email, setEmail] = useState("")
     const [password, setPassword] = useState("")
@@ -37,17 +37,18 @@ const Login = () => {
             return
         })
     }
+
     return (
         <div className="loginpage">
             <form id="login" action="" onSubmit={e=>handleLogin(e)} >
                 {msg}
                 <div className="">
-                    <label for="email">Email Address:&nbsp; </label>
+                    <label htmlFor="email">Email Address:&nbsp; </label>
                     <input className="" id="email" type="email" placeholder="email" value={email} onChange={e=>setEmail(e.target.value)} style={{width: "300px", marginBottom:"5px"}}/>
                     
                 </div>
                 <div className="">
-                    <label for="password">Password:&nbsp; </label>
+                    <label htmlFor="password">Password:&nbsp; </label>
                     <input className="" id="password" type="password" placeholder="password" value={password} onChange={e=>setPassword(e.target.value)} style={{marginLeft:"32px", width:"300px", marginBottom:"5px"}}/>
                     
                 </div>
