@@ -4,7 +4,7 @@ import {Link} from "react-router-dom"
 import Features from './Features'
 import styles from '../styles.css'
 
-const Login = (props) => {
+const Login = () => {
     const [username, setUsername] = useState("")
     const [email, setEmail] = useState("")
     const [password, setPassword] = useState("")

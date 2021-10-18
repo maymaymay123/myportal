@@ -33,22 +33,6 @@ function App() {
         })
     },[])
 
-
-    // let myAudio = document.querySelector("#music");
-    // let isPlaying = false;
-    //music on off
-
-    // function togglePlay() {
-    //     let isPlaying ? myAudio.pause() : myAudio.play();
-    // };
-
-    // myAudio.onplaying = function() {
-    //     let isPlaying = true;
-    // };
-    // myAudio.onpause = function() {
-    //     let isPlaying = false;
-    // };
-
     return (
         
         <div className="" > 
@@ -64,14 +48,14 @@ function App() {
                 <br/>
                 
                 <UserContext.Provider value={{username, setUsername, email, setEmail}}>
-                    {email ? <Link to="/dashboard"></Link>:<Link to="/"></Link>}
+
                     <main>
                         <Switch>
                             <Route exact path='/'>
-                                {email ? <Dashboard/>:<Login />}
+                                <Dashboard setEmail={setEmail} setUsername={setUsername} email={email} username={username}/>
                             </Route>
                             <Route exact path='/home'>
-                                {email ? <Dashboard/>: <Login />}
+                                <Dashboard setEmail={setEmail} setUsername={setUsername} email={email} username={username} />
                             </Route>
                             <Route exact path='/dashboard'><Dashboard setEmail={setEmail} setUsername={setUsername} email={email} username={username}/> </Route>
                             <Route exact path='/game'><Simonsays setEmail={setEmail} setUsername={setUsername} email={email} username={username}/> </Route>

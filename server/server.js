@@ -21,18 +21,6 @@ app.use(express.json({limit: "30mb", extended:true}))
 app.use (express.urlencoded ({limit: "30mb", extended: true}))
 app.use(cookieParser())
 
-
-
-
-
-// const bodyParser = require("body-parser");
-// app.use(bodyParser.urlencoded({ extended: false }));
-// app.use(bodyParser.json());
-
-
-
-
-
 app.use(cors({ 
     credentials:true,
     origin:"http://localhost:3000",
