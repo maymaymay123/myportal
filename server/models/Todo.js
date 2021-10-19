@@ -4,7 +4,7 @@ const TodoSchema = new mongoose.Schema(
     {
         todo: {type: String, required: true },
         completed: {type: Boolean, default: false},
-        priority: {type: String, required: true},
+        priority: {type: String, default: "Low"},
         email: {type: String, required: true},
     }, 
     {   

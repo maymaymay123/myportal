@@ -43,7 +43,7 @@ const Todo = (props) => {
             priority,
             email
         };
-        if (!(todo && completed && priority)){
+        if (!(todo && priority)){
             setPrompt(
                 <alert onClose={() => setPrompt(false)} >
                     Please enter all fields!

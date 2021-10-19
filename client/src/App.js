@@ -71,9 +71,9 @@ function App() {
                             <Route path="/blog/edit/:id">
                                 <EditPost username={username} email={email}/>
                             </Route>
-
-
-                            <Route exact path={'/login'} component={Login} />
+                            <Route exact path='/login'>
+                                <Dashboard setEmail={setEmail} setUsername={setUsername} email={email} username={username}/>
+                            </Route>
                             <Route exact path={'/register'} component={Register} />
                             <Route exact path={'/logout'} />
                         </Switch>           

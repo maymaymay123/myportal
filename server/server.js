@@ -211,8 +211,8 @@ app.get("/blogseed", async (req, res) => {
 
 // todo 
 app.post("/todo/add", async (req, res) => {
-    const data = await TodoModel.create(req.body);
     try {
+        const data = await TodoModel.create(req.body);
         await data.save()
         res.send({status: 'ok', msg: 'added'});
     } catch (error) {
@@ -262,11 +262,13 @@ app.get('/blog/show/:id', async (req, res) => {
 app.post("/blog/add", async (req, res) => {
     try {
         const data = await BlogModel.create(req.body); 
+        await data.save()
         res.send({status: 'ok', msg: 'added'});
     } catch (error) {
         console.log({status: 'bad', msg: error.message});
     }
 })
+
 
 // blog
 app.put("/blog/edit/:id", async (req, res) => {
