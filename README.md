@@ -17,6 +17,7 @@ HTML, CSS, Javascript, React JS, MongoDB, Express. Node JS
 
 #### Todo List:
 You can add your todo list by inputting your todo item and priority. You may update your todo list, change the priority, and also mark if it is completed. Also, you may delete your todo list if you do not want it to be in your todo list. 
+<br/>
 ![todopage](https://user-images.githubusercontent.com/88094886/137840879-308caf76-8654-4b1a-be2a-b3f14fa31820.png)
 
 #### Blog:
@@ -28,6 +29,7 @@ You may write your personal blog here. Similar as todo list, you can add new pos
 
 #### Simon says game:
 It’s a classic childhood game. The challenge is to repeat the ever-increasing sequence of signals. Do you have the memory and reflexes to beat Simon? The more you can remember, the higher score you have! Challenge your limit and go higher!
+<br/>
 ![gamepage](https://user-images.githubusercontent.com/88094886/137840940-b3feb5b9-1aa6-4e78-92df-113d974c59f5.png)
 
 #### Text Translator: 
@@ -36,6 +38,6 @@ Translation is an act through which the content of a text is transferred from th
 I downloaded the google-translated package from this url: https://www.npmjs.com/package/translate-google
 
 So far this package is working fine and I have tested a few which are either under maintenance and have few critical issues to be resolved.
-
+<br/>
 ![translatorpage](https://user-images.githubusercontent.com/88094886/137840984-3faddc36-4dc1-4c86-814f-f46ab0a99214.png)
 
