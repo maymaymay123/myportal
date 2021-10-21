@@ -19,7 +19,7 @@ const Blog = (props) => {
    
         axios.get((uri + `blog/${props.email}`))
         .then(response =>{
-            console.log('received data from get one');
+            console.log('received data from blog server');
             console.log('check date',response.data[3])
             //response.data.date = response.data.date.toISOString().split("T")[0]
             response.data.reverse()

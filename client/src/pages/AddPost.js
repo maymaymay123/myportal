@@ -65,7 +65,7 @@ const AddPost = (props) => {
     }
     return (
         <div className="" style={{textAlign:"center", backgroundColor: "#FEF3C7", width:"1590px", height:"auto" }}>
-            <br/>
+            <br/> 
             <button style={{float:"left", marginLeft:"30px",fontSize:"20px"}}><Link to="../blog">Back to Blog Page</Link></button>
             <br/>
             {prompt} 
@@ -100,3 +100,4 @@ const AddPost = (props) => {
 }
 
 export default AddPost
+ 

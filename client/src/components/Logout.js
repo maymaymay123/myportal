@@ -3,11 +3,6 @@ import axios from 'axios';
 import {NavLink} from "react-router-dom"
 
 const Logout = (props) => {
-
-    // const email = props.email;
-    // const username = props.username;
-    // const setEmail = props.setEmail;
-    // const setUsername = props.setUsername;
     const [email, setEmail] = useState(props.email)
     const [username, setUsername] = useState(props.username)
 

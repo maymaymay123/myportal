@@ -13,7 +13,7 @@ const secret = process.env.SECRET;
 
 
 const connectDB = require('./models/db')
-const mongo = process.env.MONGODBURI
+const mongo = process.env.MONGODBURI 
 connectDB(mongo);
 
 const app = express()
@@ -106,7 +106,7 @@ app.post('/login',async (req,res)=>{
         }
     
     })
-})
+}) 
 
 //logout
 app.post('/logout',(req,res)=>{
@@ -119,7 +119,7 @@ app.get("/todo/:email", async (req, res) => {
     try {
         const data = await TodoModel.find({email: req.params.email}); 
         res.send(data);
-        console.log({status: 'ok', msg: 'get'});
+        console.log({status: 'ok', msg: 'get todo data'});
     } catch (error) {
         console.log({status: 'bad', msg: error.message});
     }
@@ -130,7 +130,7 @@ app.get("/blog/:email", async (req, res) => {
     try {
         const data = await BlogModel.find({email: req.params.email}); 
         res.send(data);
-        console.log({status: 'ok', msg: 'get'});
+        console.log({status: 'ok', msg: 'get blog data'});
     } catch (error) {
         console.log({status: 'bad', msg: error.message});
     }
@@ -141,7 +141,7 @@ app.get("/translator/:email", async (req, res) => {
     try {
         const data = await TranslatorModel.find({email: req.params.email}); 
         res.send(data);
-        console.log({status: 'ok translator server', msg: 'get'});
+        console.log({status: 'ok translator server', msg: 'get translator data'});
     } catch (error) {
         console.log({status: 'bad translator server', msg: error.message});
     }
@@ -153,7 +153,7 @@ app.get("/highestscore/:email", async (req, res) => {
         const data = await ScoreModel.find({email: req.params.email}); 
         console.log("email",req.params.email)
         res.send(data);
-        console.log({status: 'ok', msg: 'game email'});
+        console.log({status: 'ok', msg: 'get game data'});
     } catch (error) {
         console.log({status: 'bad', msg: error.message});
     }
@@ -165,7 +165,7 @@ app.get("/todoseed", async (req, res) => {
         await TodoModel.deleteMany({});
         const data = await TodoModel.create(todoseed); 
         res.send(data);
-        console.log({status: 'ok', msg: 'seeded'});
+        console.log({status: 'ok', msg: 'todo seeded'});
     } catch (error) {
         console.log({status: 'bad', msg: error.message});
     }
@@ -177,7 +177,7 @@ app.get("/translatorseed", async (req, res) => {
         await TranslatorModel.deleteMany({});
         const data = await TranslatorModel.create(translatorseed); 
         res.send(data);
-        console.log({status: 'ok', msg: 'seeded'});
+        console.log({status: 'ok', msg: 'translator seeded'});
     } catch (error) {
         console.log({status: 'bad', msg: error.message});
     }
@@ -189,7 +189,7 @@ app.get("/scoreseed", async (req, res) => {
         await ScoreModel.deleteMany({});
         const data = await ScoreModel.create(scoreseed); 
         res.send(data);
-        console.log({status: 'ok', msg: 'seeded'});
+        console.log({status: 'ok', msg: 'score seeded'});
     } catch (error) {
         console.log({status: 'bad', msg: error.message});
     }
@@ -201,7 +201,7 @@ app.get("/blogseed", async (req, res) => {
         await BlogModel.deleteMany({});
         const data = await BlogModel.create(blogseed); 
         res.send(data);
-        console.log({status: 'ok', msg: 'seeded'});
+        console.log({status: 'ok', msg: 'blog seeded'});
     } catch (error) {
         console.log({status: 'bad', msg: error.message});
     }
@@ -214,7 +214,7 @@ app.post("/todo/add", async (req, res) => {
     try {
         const data = await TodoModel.create(req.body);
         await data.save()
-        res.send({status: 'ok', msg: 'added'});
+        res.send({status: 'ok', msg: 'todo added'});
     } catch (error) {
         console.log({status: 'bad', msg: error.message});
     }
@@ -226,7 +226,7 @@ app.put("/todo/edit/:id", async (req, res) => {
         await TodoModel.updateOne({_id: req.params.id}, req.body); 
         const data = await TodoModel.findOne({_id: req.params.id}); 
         res.send(data);
-        console.log({status: 'ok', msg: 'edited'});
+        console.log({status: 'ok', msg: 'todo edited'});
     } catch (error) {
         console.log({status: 'bad', msg: error.message});
     }
@@ -239,7 +239,7 @@ app.delete("/todo/delete/:id", async (req, res) => {
         await TodoModel.deleteOne({_id: req.params.id}); 
         const data = await TodoModel.find({}); 
         res.send(data);
-        console.log({status: 'ok', msg: 'deleted'});
+        console.log({status: 'ok', msg: 'todo deleted'});
     } catch (error) {
         console.log({status: 'bad', msg: error.message});
     }
@@ -252,7 +252,7 @@ app.get('/blog/show/:id', async (req, res) => {
     try {
         const data = await BlogModel.findOne({_id: req.params.id});
         res.send(data);
-        console.log({status: 'ok', msg: 'get one'});
+        console.log({status: 'ok', msg: 'post show one'});
     } catch (error) {
         console.log({status: 'bad', msg: error.message});
     }
@@ -263,7 +263,7 @@ app.post("/blog/add", async (req, res) => {
     try {
         const data = await BlogModel.create(req.body); 
         await data.save()
-        res.send({status: 'ok', msg: 'added'});
+        res.send({status: 'ok', msg: 'post added'});
     } catch (error) {
         console.log({status: 'bad', msg: error.message});
     }
@@ -276,7 +276,7 @@ app.put("/blog/edit/:id", async (req, res) => {
         await BlogModel.updateOne({_id: req.params.id}, req.body); 
         const data = await BlogModel.findOne({_id: req.params.id}); 
         res.send(data);
-        console.log({status: 'ok', msg: 'edited'});
+        console.log({status: 'ok', msg: 'post edited'});
     } catch (error) {
         console.log({status: 'bad', msg: error.message});
     }
@@ -288,7 +288,7 @@ app.delete("/blog/delete/:id", async (req, res) => {
         await BlogModel.deleteOne({_id: req.params.id}); 
         const data = await BlogModel.find({}); 
         res.send(data);
-        console.log({status: 'ok', msg: 'deleted'});
+        console.log({status: 'ok', msg: 'post deleted'});
     } catch (error) {
         console.log({status: 'bad', msg: error.message});
     }
@@ -299,12 +299,12 @@ app.post("/highestscore/add", async (req, res) => {
     const data = await ScoreModel.create(req.body);
     try {
         await data.save()
-        res.send({status: 'ok', msg: 'added'});
+        res.send({status: 'ok', msg: 'score added'});
     } catch (error) {
         console.log({status: 'bad', msg: error.message});
     }
 })
-
+ 
 // score
 app.put("/highestscore/:email", async (req, res) => {
     try { 
@@ -333,6 +333,7 @@ app.put("/highestscore/:email", async (req, res) => {
   
 //https://www.npmjs.com/package/translate-google
 app.post('/translator', async (req,res) => {
+    try {
     console.log(req.body.text)
     console.log(req.body.to)
     translate( req.body.text, {from: req.body.from, to: req.body.to}).then(response => {
@@ -345,6 +346,9 @@ app.post('/translator', async (req,res) => {
     }).catch(err => {
         console.error(err);
     });
+    } catch (error) {
+        console.log({status: 'bad', msg: error.message});
+    }
   
 })
 

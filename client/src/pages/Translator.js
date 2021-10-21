@@ -1,5 +1,4 @@
 import React, {useState, useEffect} from "react";
-import {Link} from 'react-router-dom';
 import axios from 'axios';
 import Login from '../components/Login'
 
@@ -26,7 +25,7 @@ const Translator = (props) => {
    
         axios.get((uri + `translator/${props.email}`))
         .then(response =>{
-            console.log('received data');
+            console.log('received translate data from server');
             response.data.reverse()
             setData(response.data);
             console.log('data',data);
@@ -101,7 +100,7 @@ const Translator = (props) => {
             <h1 className="" style={{textDecoration:"none", color:"black"}}>
                 Language Translator
             </h1>
-            <div className="" style={{display:"inline-block", width:"900px", height:"900px", margin:"20px"}}>
+            <div className="" style={{display:"inline-block", width:"900px", margin:"20px"}}>
                 <div>
                     <div style={{color:"red",fontSize:"23px"}}>{prompt}</div>
                     <form onSubmit={handleSubmit} >

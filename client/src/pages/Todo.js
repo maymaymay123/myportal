@@ -24,7 +24,7 @@ const Todo = (props) => {
         console.log("email",props.email)
         axios.get((uri + `todo/${props.email}`))
         .then(response =>{
-            console.log('received data');
+            console.log('received todo data from server');
             console.log('ss',response)
             setData(response.data)
             console.log("datatodo",data)
@@ -43,7 +43,7 @@ const Todo = (props) => {
             priority,
             email
         };
-        if (!(todo && priority)){
+        if (!(todo)){
             setPrompt(
                 <alert onClose={() => setPrompt(false)} >
                     Please enter all fields!
@@ -96,31 +96,32 @@ const Todo = (props) => {
             completed,
             priority,
         }
-        if (!(todo && completed && priority)){
+        if (!(todo)){
             setPrompt(
                 <alert onClose={() => setPrompt(false)}>
                     Please enter all fields!
                 </alert>
                 )
-        } 
-        console.log("lulu2")
-        console.log('part1',uri + `todo/edit/${id}`)
-        console.log('id',id)
-        console.log('email',email)
-        console.log('part2',data)
-        axios.put((uri + `todo/edit/${id}`), data)
-        .then(response =>{
-            console.log('received edited data');
-            console.log(response.data);
-            console.log("edited data",data);
-            setTodo('')
-            setCompleted('')
-            setPriority('')
-            window.location.href = "/todo";
-        })
-        .catch((error)=> {
-            console.log({status: 'bad', msg: error.message})
-        })
+        } else {
+            console.log("lulu2")
+            console.log('part1',uri + `todo/edit/${id}`)
+            console.log('id',id)
+            console.log('email',email)
+            console.log('part2',data)
+            axios.put((uri + `todo/edit/${id}`), data)
+            .then(response =>{
+                console.log('received edited data');
+                console.log(response.data);
+                console.log("edited data",data);
+                setTodo('')
+                setCompleted('')
+                setPriority('')
+                window.location.href = "/todo";
+            })
+            .catch((error)=> {
+                console.log({status: 'bad', msg: error.message})
+            })
+        }
     }
 
     if (email){

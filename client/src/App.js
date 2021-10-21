@@ -10,7 +10,6 @@ import Simonsays from "./pages/Simonsays"
 import Todo from "./pages/Todo"
 import Translator from './pages/Translator';
 import Logout from "./components/Logout"
-import Login from './components/Login'
 import Register from "./components/Register"
 import UserContext from './components/UserContext'
 import axios from 'axios';
@@ -46,9 +45,7 @@ function App() {
                 </span>
                 <hr style={{border:"white solid 3px"}} />
                 <br/>
-                
                 <UserContext.Provider value={{username, setUsername, email, setEmail}}>
-
                     <main>
                         <Switch>
                             <Route exact path='/'>
@@ -86,4 +83,3 @@ function App() {
 
 export default App;
 
-//<a id="musicBox" onClick="togglePlay()">Music</a>

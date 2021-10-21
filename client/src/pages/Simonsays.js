@@ -1,7 +1,6 @@
 import "../App.css";
 import React, { useState, useEffect } from "react";
 import ColorCard from "../components/ColorCard";
-import timeout from "../components/util";
 import axios from 'axios';
 import Login from '../components/Login'
 
@@ -21,7 +20,7 @@ function Simonsays(props) {
    
         axios.get((uri + `highestscore/${props.email}`))
         .then(response =>{
-            console.log('received data');
+            console.log('received score data from server');
             console.log('dataaaaa',response.data); 
             if (response.data.length === 0){
                 const data = {
@@ -63,7 +62,7 @@ function Simonsays(props) {
     const [game, setGame] = useState(startPlay);
     const [flashColor, setFlashColor] = useState("");
 
-    function startHandle(e) {
+    function startSubmit(e) {
         setIsOn(true);
     }
 
@@ -91,6 +90,11 @@ function Simonsays(props) {
         }
     }, [isOn, game.isDisplay, game.colors.length]);
 
+
+    function timeout(ms) {
+        return new Promise((resolve) => setTimeout(resolve, ms));
+    }
+
     async function displayColors() {
         await timeout(500);
         for (let i = 0; i < game.colors.length; i++) {
@@ -98,18 +102,18 @@ function Simonsays(props) {
             await timeout(500);
             setFlashColor("");
             await timeout(500);
+ 
+            if (i === game.colors.length - 1) {
+                const copyColors = [...game.colors];
 
-        if (i === game.colors.length - 1) {
-            const copyColors = [...game.colors];
-
-            setGame({
-                ...game,
-                isDisplay: false,
-                userPlay: true,
-                userColors: copyColors.reverse(),
-              });
+                setGame({
+                    ...game,
+                    isDisplay: false,
+                    userPlay: true,
+                    userColors: copyColors.reverse(),
+                });
+                }
             }
-        }
     }
 
     async function cardClickHandle(color) {
@@ -141,7 +145,7 @@ function Simonsays(props) {
     }
 
  
-    function closeHandle(e) {
+    function replaySubmit(e) {
         e.preventDefault();
         console.log("gm scr",game.score)
         if (game.score > highestscore) {
@@ -169,7 +173,7 @@ function Simonsays(props) {
             console.log({status: 'bad cant submit', msg: error.message})
         })
         } else {
-            setIsOn(false)
+            setIsOn(false) 
         } 
     }
 
@@ -195,11 +199,11 @@ function Simonsays(props) {
                     {isOn && !game.isDisplay && !game.userPlay && game.score && (
                     <div className="lost">
                         <div>Your Score: {game.score}</div>
-                        <button onClick={closeHandle}>Replay</button>
+                        <button onClick={replaySubmit}>Replay</button>
                     </div>
                     )}
                     {!isOn && !game.score && (
-                    <button onClick={startHandle} className="startButton">
+                    <button onClick={startSubmit} className="startButton">
                         Start
                     </button>
                     )}

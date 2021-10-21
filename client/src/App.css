@@ -62,7 +62,7 @@
   align-items: center;
   flex-direction: column;
   left: 630px;
-}
+} 
 
 
 .colorCard {
@@ -74,7 +74,7 @@
   border-width: 10px;
 }
 
-.green.flash.flash {
+.green.flash {
   border: 3px solid white;
   border-radius: 5px;
   box-sizing: border-box;
@@ -95,7 +95,7 @@
   background-color: green;
 }
 
-.red.flash.flash{
+.red.flash{
   position: absolute;
   height: 250px;
   width: 250px;
@@ -113,7 +113,7 @@
   background-color: red;
 }
 
-.yellow.flash.flash{
+.yellow.flash{
   position: absolute;
   height: 250px;
   width: 250px;
@@ -131,7 +131,7 @@
   background-color: yellow;
 }
 
-.blue.flash.flash{
+.blue.flash{
   position: absolute;
   height: 250px;
   width: 250px;
