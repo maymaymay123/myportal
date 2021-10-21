@@ -3,7 +3,7 @@ Myportal is a MERN app with a few features in it. With this app, you do not have
 
 
 #### Technology / Tools used:
-HTML, CSS, Javascript, React JS, MongoDB, Express. Node JS
+HTML, CSS, Javascript, React JS, MongoDB, Express, Node JS
 
 
 #### Home page / Login page
@@ -28,7 +28,7 @@ You may write your personal blog here. Similar as todo list, you can add new pos
 ![blogpage2](https://user-images.githubusercontent.com/88094886/137840908-42819323-6de8-485e-b884-d52a17086a53.png)
 
 #### Simon says game:
-It’s a classic childhood game. The challenge is to repeat the ever-increasing sequence of signals. Do you have the memory and reflexes to beat Simon? The more you can remember, the higher score you have! Challenge your limit and go higher!
+It’s a classic childhood game. The challenge is to repeat the ever-increasing sequence of signals. Do you have the memory and reflexes to beat Simon? The more you can remember, the higher score you get! Challenge your limit and go higher!
 <br/>
 ![gamepage](https://user-images.githubusercontent.com/88094886/137840940-b3feb5b9-1aa6-4e78-92df-113d974c59f5.png)
 
