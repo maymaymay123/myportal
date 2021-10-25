@@ -5,8 +5,8 @@ const cors = require('cors');
 const jwt = require('jsonwebtoken');
 require('dotenv').config()
 const cookieParser = require("cookie-parser")
-//const translate = require('@vitalets/google-translate-api');
 const translate = require('translate-google')
+const path = require('path');
 
 
 const secret = process.env.SECRET;
@@ -25,6 +25,8 @@ app.use(cors({
     credentials:true,
     origin:"http://localhost:3000",
 }))
+
+app.use(express.static(path.join(__dirname, 'client/build')))
 
 const TodoModel = require('./models/Todo');
 const todoseed = require('./models/todoseed');
