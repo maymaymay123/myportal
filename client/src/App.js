@@ -35,11 +35,11 @@ function App() {
     return (
         
         <div className="" > 
-            <div style={{ backgroundImage: `url(${background})`, height: "1010px",backgroundSize: "cover", backgroundRepeat:"repeat-x"}}>
+            <div style={{ backgroundImage: `url(${background})`, height: "1010px",backgroundSize: "100%", backgroundRepeat:"repeat-y"}}>
                 <Link to="/dashboard"><img src='/homeicon.png' width="50px" height="50px" float="left" style={{margin:"25px",marginLeft:"40px"}}/></Link>
                 <Music />
-                <span style={{position:"absolute", marginLeft:"450px", marginTop:"30px"}}><h1>Welcome to the myportal</h1></span>
-                <span style={{fontSize:"20px", color:"white", position:"absolute",marginTop:"25px", marginLeft: "1250px"}}>
+                <span style={{position:"absolute", marginLeft:"230px", marginTop:"30px"}}><h1>Welcome to the myportal</h1></span>
+                <span style={{fontSize:"20px", color:"white", position:"absolute",marginTop:"25px", marginLeft: "950px"}}>
                     {email && (<div>Hi, <b>{username} </b></div>)}
                     {email && (<Logout />)}
                 </span>

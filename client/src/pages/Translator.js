@@ -100,7 +100,7 @@ const Translator = (props) => {
             <h1 className="" style={{textDecoration:"none", color:"black"}}>
                 Language Translator
             </h1>
-            <div className="" style={{display:"inline-block", width:"900px", margin:"20px"}}>
+            <div className="" style={{display:"inline-block", width:"800px", margin:"20px"}}>
                 <div>
                     <div style={{color:"red",fontSize:"23px"}}>{prompt}</div>
                     <form onSubmit={handleSubmit} >
@@ -155,7 +155,7 @@ const Translator = (props) => {
                     </div>
                         <div class="form-group">
                             <label htmlFor="text" style={{color:"white"}}>Write Text:</label>
-                            <textarea class="form-control" style={{backgroundColor: "#FFFBEB"}} name="text" required id="text" onChange={(e)=> setText(e.target.value)} value={text} cols="20" rows="8" placeholder="text to translate"></textarea>
+                            <textarea class="form-control" style={{backgroundColor: "#FFFBEB"}} name="text" required id="text" onChange={(e)=> setText(e.target.value)} value={text} cols="15" rows="4" placeholder="text to translate"></textarea>
                         </div>
                 
                         <div class="form-group">
@@ -224,7 +224,7 @@ const Translator = (props) => {
                     </form>
                 </div>
             </div> 
-            <span style={{ display:"inline-block", verticalAlign:"top", backgroundColor:"#FFFBEB", margin:"50px", width:"500px", height:"auto"}}>
+            <span style={{ display:"inline-block", verticalAlign:"top", backgroundColor:"#FFFBEB", margin:"45px", width:"300px", height:"auto"}}>
                 <h1 style={{textDecoration:"none", color:"black"}}>History: </h1>
                 {data.slice(0,7).map((element, index) => {
                     return (

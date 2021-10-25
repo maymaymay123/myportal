@@ -181,9 +181,9 @@ function Simonsays(props) {
     return (
         <div className="">
             <div className="highestscore">Personal Highest Score : {highestscore}</div>
-            <div className="wholecircle" style={{marginTop:"30px"}}>
-                <div className="frame">
-                    <div className="cardWrapper">
+            <div className="">
+                <div className="test">
+                    <div className="cardwrapper">
                         {colorList &&
                         colorList.map((v, i) => (
                         <ColorCard

@@ -56,7 +56,7 @@ const Blog = (props) => {
                         let currentDate = new Date(element.date);
                         const isoDate = currentDate.toISOString().split("T")[0];
                         return (
-                            <div key={element._id} style={{textAlign:"center", backgroundColor: "#FFFBEB", width:"1300px",marginLeft:"130px", height:"auto"}} >
+                            <div key={element._id} style={{textAlign:"center", backgroundColor: "#FFFBEB", width:"1300px",marginLeft:"-10px", height:"auto"}} >
                                 <h1 className="titledeco" style={{textDecoration:"none", color:"black"}}><Link to={`blog/show/${element._id}`}>{element.title}</Link></h1>
                                 <div style={{color:"grey"}}><i>{isoDate}</i></div>
                                 <div className="" >

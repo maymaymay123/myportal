@@ -170,7 +170,7 @@ const Todo = (props) => {
                     decoration = "line-through"
                 }
                 return (
-                        <div className="" id={element._id} style={{backgroundColor:"#FFFBEB", textAlign:"center", width:"700px", marginLeft:"450px", height:"auto"}}>
+                        <div className="" id={element._id} style={{backgroundColor:"#FFFBEB", textAlign:"center", width:"700px", marginLeft:"300px", height:"auto"}}>
                             <div scope="row">{index + 1}</div>
                             <div style={{backgroundColor: color, textDecoration:decoration}} onClick={()=> clickTitle(element)}>{element.todo}</div>
                             <br/>
@@ -236,7 +236,7 @@ const Todo = (props) => {
                         decoration = "line-through"
                     }
                     return (
-                            <div id={element._id} style={{backgroundColor:"#FFFBEB", textAlign:"center", width:"700px", marginLeft:"450px"}}>
+                            <div id={element._id} style={{backgroundColor:"#FFFBEB", textAlign:"center", width:"700px", marginLeft:"300px"}}>
                                 <div scope="row">{index + 1}</div>
                                 <span><div style={{backgroundColor: color, textDecoration:decoration}} onClick={()=> clickTitle(element)}>{element.todo}</div></span>
                                 <br/>

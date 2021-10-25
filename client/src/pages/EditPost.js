@@ -104,13 +104,13 @@ const EditPost = (props) => {
                 <div className="">  
                     <br/>
                     <label htmlFor="changetitle">Title: &nbsp;</label>  
-                    <input className="" id="changetitle" onChange={(e)=> setTitle(e.target.value)} value={title} type="text" placeholder="Title" style={{width:"900px"}} required/>
+                    <input className="" id="changetitle" onChange={(e)=> setTitle(e.target.value)} value={title} type="text" placeholder="Title" style={{width:"800px"}} required/>
                     
                 </div>
                 <br/>
                 <div className="">   
                     <div><label htmlFor="changepost">Post: </label></div>      
-                    <textarea className="" id="changepost" onChange={(e)=> setPost(e.target.value)} value={post} cols="180" rows="10" placeholder="Post" required/> 
+                    <textarea className="" id="changepost" onChange={(e)=> setPost(e.target.value)} value={post} cols="120" rows="10" placeholder="Post" required/> 
                </div>
                <div>Date: {date}</div>
                <br/>

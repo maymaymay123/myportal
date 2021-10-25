@@ -73,12 +73,12 @@ const AddPost = (props) => {
                     <div className="">  
                         <br/>
                         <label hmtlFor="inputtitle">Title:&nbsp; </label>  
-                        <input className="" id="inputtitle" onChange={(e)=> setTitle(e.target.value)} value={title} type="text" placeholder="Title" style={{width:"900px"}}/>
+                        <input className="" id="inputtitle" onChange={(e)=> setTitle(e.target.value)} value={title} type="text" placeholder="Title" style={{width:"800px"}}/>
                     </div> 
                     <br/>
                     <div className="">  
                         <div><label htmlFor="inputpost">Post: </label></div>
-                        <textarea className="" id="inputpost" onChange={(e)=> setPost(e.target.value)} value={post} cols="180" rows="10" placeholder="Post"/>
+                        <textarea className="" id="inputpost" onChange={(e)=> setPost(e.target.value)} value={post} cols="120" rows="10" placeholder="Post"/>
                     </div>
                     <div className="">  
                         Today's Date: {date}
